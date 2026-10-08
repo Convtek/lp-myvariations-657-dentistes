@@ -215,7 +215,6 @@ h1, h2, h3 { margin: 0; color: var(--ink); font-weight: 500; letter-spacing: -0.
 .feat li::before { content: ""; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; background: var(--blush) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 12.5l4 4 8-9' fill='none' stroke='%23d82164' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 12px no-repeat; }
 .buybox .btn { width: 100%; padding-block: 20px; font-size: 1.1rem; }
 .btn.done { background: var(--ink); box-shadow: none; }
-.mock-note { font-size: 0.8rem; color: #6b4b00; background: #fff4d6; padding: 8px 12px; border-radius: 8px; }
 .steps { margin-top: 88px; display: grid; grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr); gap: 40px; align-items: center; }
 .steps ol { position: relative; list-style: none; margin: 0; padding: 30px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
 .steps li { background: #fff; border-radius: var(--r-md); padding: 20px 18px; font-size: 0.94rem; display: grid; gap: 12px; align-content: start; counter-increment: s; color: #4a4648; }
@@ -792,7 +791,6 @@ body { padding: 0; background: var(--page); }
           </div>
           <button type="button" class="btn shine" id="buy" data-bc-cta="buy"><span id="buy-t">J'ajoute ma brosse au panier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <span class="micro" style="text-align:center">Satisfait ou remboursé · Livré en 48 h · Aussi en pharmacie</span>
-          <p class="mock-note" id="mock-note" hidden>Maquette : ce bouton sera relié au panier de la boutique au build.</p>
           <p class="inbox"><b>Dans la boîte :</b> la brosse, une tête à poils souples, le câble de charge USB-C, le capuchon de protection.</p>
           <div><span class="label">Ce qu'elle fait</span>
             <ul class="feat">
@@ -1164,7 +1162,7 @@ $$("#opts .opt").forEach((b) => b.addEventListener("click", () => $$("#opts .opt
 $("#buy").addEventListener("click", () => {
   const b = $("#buy"), t = $("#buy-t"); if (b.dataset.busy) return; b.dataset.busy = "1";
   t.textContent = "Ajout…";
-  setTimeout(() => { t.textContent = "Ajoutée"; b.classList.add("done"); $("#mock-note").hidden = false; }, 700);
+  setTimeout(() => { t.textContent = "Ajoutée"; b.classList.add("done"); }, 700);
   setTimeout(() => { t.textContent = "J'ajoute ma brosse au panier"; b.classList.remove("done"); delete b.dataset.busy; }, 2600);
 });
 
