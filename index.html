@@ -1,0 +1,1411 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>MyVariations · Testée par plus de 5 000 pros du dentaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,100,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Maquette v10 : la page MyVariations refaite à la DA de la marque (Archivo, rose #F65497, pastels rose / sauge / ciel, bleu nuit),
+   posée au centre d'un bureau, avec une fiche de structure bleue au-dessus de chaque section.
+   Single-theme assumé : c'est la reproduction d'une page de marque claire, toutes les couleurs sont posées explicitement. */
+:root {
+  --desk: #ecebef;
+  --page: #ffffff;
+  --ink: #1d1d1b;
+  --text: #303030;
+  --muted: #6e6a6c;
+  --line: #efe9eb;
+  --pink: #f65497;
+  --pink-deep: #d82164;
+  --blush: #f9ceda;
+  --blush-soft: #fdeef3;
+  --sage: #c6dca5;
+  --sage-soft: #eef5e6;
+  --sky: #bad9e1;
+  --sky-soft: #eaf4f7;
+  --navy: #253494;
+  --cream: #fbf8f6;
+  --tint: #fdeef3;
+  --anno: #2c55c9;
+  --anno-bg: #f1f5ff;
+  --anno-line: #c9d6fb;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r-lg: 28px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--desk); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.55; padding-inline: 16px; padding-block: 0 72px; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--anno); outline-offset: 3px; }
+
+/* ---------- Outils de maquette ---------- */
+.tools { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; margin-inline: -16px; padding: 9px 16px; background: rgba(236, 235, 239, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #d8d6dc; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 0.82rem; }
+.tools .name { font-weight: 600; margin-right: auto; color: var(--ink); }
+.tools .name small { font-weight: 400; color: var(--muted); margin-left: 6px; }
+.seg { display: inline-flex; align-items: center; gap: 2px; background: #fff; border: 1px solid #d8d6dc; border-radius: 999px; padding: 2px; }
+.seg span { padding: 0 6px 0 9px; color: var(--muted); }
+.seg button { border: 0; background: transparent; padding: 5px 10px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.struct { position: fixed; left: 16px; top: 78px; width: 214px; z-index: 40; font-size: 0.78rem; background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 10px 30px -18px rgba(30, 20, 50, 0.35); display: none; }
+.struct b { display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--anno); margin-bottom: 6px; }
+.struct ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 1px; }
+.struct a { display: grid; grid-template-columns: 18px 1fr; gap: 4px; text-decoration: none; padding: 4px 6px; border-radius: 6px; color: var(--muted); line-height: 1.25; }
+.struct a.on { background: var(--anno-bg); color: #1d2c55; font-weight: 600; }
+@media (min-width: 1540px) { body:not(.reading) .struct { display: block; } }
+.stage { container-type: inline-size; max-width: 1180px; margin: 22px auto 0; background: var(--page); border-radius: 14px; overflow: clip; box-shadow: 0 1px 0 #d8d6dc, 0 20px 60px -30px rgba(40, 30, 60, 0.25); }
+.stage.phone { max-width: 400px; border-radius: 28px; }
+.mock-banner { background: repeating-linear-gradient(135deg, #fff4d6 0 12px, #ffefc2 12px 24px); color: #6b4b00; font-size: 0.76rem; text-align: center; padding: 7px 16px; }
+.fiche { background: var(--anno-bg); border-block: 1px dashed var(--anno-line); color: #1d2c55; font-size: 0.8rem; line-height: 1.45; position: relative; z-index: 3; }
+body.reading .fiche { display: none; }
+.fiche .wrap { padding-block: 12px; display: grid; gap: 6px; }
+.fiche .top { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
+.fiche .n { font-weight: 800; font-size: 1.25rem; color: var(--anno); line-height: 1; }
+.fiche .t { font-weight: 700; font-size: 0.92rem; }
+.fiche .tag { font-family: var(--mono); font-size: 0.72rem; background: #fff; border: 1px solid var(--anno-line); border-radius: 4px; padding: 0 6px; }
+.fiche .rep b, .fiche .build b { font-weight: 700; }
+.fiche .comps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.comp { background: #fff; border: 1px solid var(--anno-line); border-radius: 8px; padding: 6px 8px 6px 6px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: center; max-width: 330px; }
+.comp img { width: 64px; height: 46px; object-fit: cover; border-radius: 4px; border: 1px solid var(--anno-line); background: #e9eefc; }
+.comp .r { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--anno); display: block; }
+.comp a { font-weight: 600; color: #1d2c55; text-decoration-color: var(--anno-line); }
+.comp .lic { font-size: 0.7rem; color: #4b5a82; display: block; }
+
+/* ---------- Système de la page ---------- */
+.wrap { max-width: 1100px; margin: 0 auto; padding-inline: 40px; }
+.sec { padding-block: 104px; position: relative; }
+h1, h2, h3 { margin: 0; color: var(--ink); font-weight: 500; letter-spacing: -0.02em; text-wrap: balance; }
+.h2 { font-size: clamp(2rem, 1.4rem + 1.9vw, 2.9rem); line-height: 1.06; }
+.h3 { font-size: clamp(1.45rem, 1.15rem + 0.9vw, 1.9rem); line-height: 1.15; }
+.kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink-deep); }
+.kicker::before { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; }
+.lead { font-size: 1.15rem; line-height: 1.5; color: #4a4648; max-width: 52ch; }
+.head { display: grid; gap: 16px; margin-bottom: 48px; max-width: 760px; }
+.head.c { margin-inline: auto; text-align: center; justify-items: center; }
+.micro { font-size: 0.86rem; color: var(--muted); }
+.num { font-stretch: 112%; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: var(--pink); color: #fff; border: 0; border-radius: 6px; padding: 18px 30px; font-size: 1.06rem; font-weight: 600; letter-spacing: 0.005em; text-decoration: none; cursor: pointer; transition: background 0.25s, transform 0.25s; box-shadow: 0 14px 30px -14px rgba(246, 84, 151, 0.7); }
+.btn:hover { background: var(--pink-deep); transform: translateY(-1px); }
+.btn svg { width: 18px; height: 18px; transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
+.btn:hover svg { transform: translateX(5px); }
+.btn.shine::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent); transform: skewX(-18deg); animation: shine 3.4s ease-in-out infinite 1.6s; }
+@keyframes shine { 0% { left: -60%; } 45%, 100% { left: 130%; } }
+.stars { color: #00b67a; letter-spacing: 1px; }
+.grain { position: absolute; inset: 0; pointer-events: none; opacity: 0.35; mix-blend-mode: multiply; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .47  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+/* En-tête */
+.nav { position: relative; z-index: 2; }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
+.nav img { height: 30px; width: auto; }
+.nav a { font-size: 0.88rem; font-weight: 600; text-decoration: none; color: var(--ink); display: inline-flex; gap: 8px; align-items: center; }
+.nav a::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--pink); }
+.progress { position: sticky; top: 0; height: 3px; z-index: 30; }
+.progress i { display: block; height: 100%; background: var(--pink); transform-origin: left; transform: scaleX(0); }
+
+/* 1. Hero */
+.hero { position: relative; overflow: hidden; padding-block: 40px 96px; background: radial-gradient(70% 90% at 85% 40%, #fbd9e4 0%, rgba(253, 238, 243, 0) 70%), linear-gradient(180deg, #fff 0%, var(--blush-soft) 100%); }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 56px; align-items: center; }
+.hero-copy { display: grid; gap: 26px; justify-items: start; }
+.hero h1 { font-size: clamp(2.1rem, 1.5rem + 1.7vw, 2.75rem); line-height: 1.08; letter-spacing: -0.025em; max-width: 21ch; }
+.hero h1 em { font-style: normal; color: var(--pink); }
+.wd { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.wd > span { display: inline-block; will-change: transform; }
+.hero-sub { font-size: 1.16rem; line-height: 1.5; color: #4a4648; max-width: 40ch; }
+.cta-row { display: grid; gap: 12px; justify-items: start; }
+.cta-row .btn { padding: 23px 44px; font-size: 1.22rem; }
+.cta-row .micro { padding-left: 4px; }
+.hero-media { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 4 / 4.6; background: var(--blush); box-shadow: 0 40px 80px -50px rgba(216, 33, 100, 0.55); will-change: clip-path; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; will-change: transform; }
+.hero-blob { position: absolute; width: 380px; height: 380px; right: -60px; top: -50px; border-radius: 50%; background: radial-gradient(circle, rgba(246, 84, 151, 0.28), rgba(246, 84, 151, 0) 70%); filter: blur(10px); }
+
+/* 2. Ce que demandent les dentistes */
+.s2 { background: var(--page); }
+.rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.rule { background: var(--cream); border-radius: var(--r-md); padding: 28px 26px 30px; display: grid; gap: 14px; align-content: start; }
+.rule .ic { width: 52px; height: 52px; border-radius: 16px; background: var(--blush); color: var(--pink-deep); display: grid; place-items: center; }
+.rule .ic svg { width: 26px; height: 26px; }
+.rule b { display: block; font-size: 1.22rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+.rule p { color: #514d4f; }
+.vs { margin-top: 96px; }
+.vs-title { max-width: 26ch; margin-bottom: 36px; }
+.vs-row { display: grid; grid-template-columns: minmax(0, 0.7fr) repeat(3, minmax(0, 1fr)); column-gap: 14px; }
+.vs-row > div { padding: 18px 20px; display: flex; gap: 12px; align-items: flex-start; font-size: 0.99rem; line-height: 1.38; border-bottom: 1px solid var(--line); }
+.vs-row .lb { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); align-items: center; }
+.vs-row .c:not(.me) { background: var(--cream); color: #5c585a; border-bottom-color: #f0e9ec; }
+.vs-row .c.me { background: var(--pink); color: #fff; font-weight: 500; border-bottom-color: rgba(255, 255, 255, 0.22); }
+.vs-head > div { flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; border-bottom: 0; padding-top: 26px; gap: 8px; }
+.vs-head > div:first-child { background: none !important; }
+.vs-head .c { border-radius: var(--r-md) var(--r-md) 0 0; }
+.vs-head .c.me { box-shadow: 0 -20px 40px -30px rgba(216, 33, 100, 0.8); }
+.vs-head svg { width: 96px; height: 96px; }
+.vs-head b { font-size: 1.02rem; font-weight: 600; }
+.vs-row:last-child .c { border-radius: 0 0 var(--r-md) var(--r-md); border-bottom: 0; }
+.mk { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 0.75rem; font-weight: 700; }
+.mk.no { background: #ebe3e6; color: #8d8589; }
+.mk.mid { background: #efe9eb; color: #8d8589; font-size: 1rem; }
+.mk.yes { background: #fff; color: var(--pink); }
+.honest { margin-top: 22px; font-size: 0.95rem; color: var(--muted); max-width: 72ch; }
+@keyframes buzz { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-1.6px); } 75% { transform: translateX(1.6px); } }
+@keyframes wave { 0% { opacity: 0.2; } 50% { opacity: 1; } 100% { opacity: 0.2; } }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes sweep { 0%, 100% { transform: translateX(-12px); } 50% { transform: translateX(12px); } }
+.vs .sweep { animation: sweep 1.4s ease-in-out infinite; }
+.vs .spin { animation: spin 1.6s linear infinite; transform-origin: 75px 56px; }
+.vs .head-b { animation: buzz 0.09s linear infinite; transform-box: fill-box; }
+.vs .waves path { animation: wave 1.1s ease-in-out infinite; }
+.vs .waves path:nth-child(2n) { animation-delay: 0.25s; }
+
+/* 3. Bandeau + offre */
+.trust { background: var(--navy); color: #fff; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.trust .track { display: inline-flex; gap: 48px; padding-block: 17px; will-change: transform; }
+.trust .track > span { display: inline-flex; align-items: center; gap: 12px; font-size: 0.98rem; font-weight: 500; }
+.trust .track > span::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pink); margin-left: 36px; }
+.trust .ic { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: var(--pink); display: grid; place-items: center; flex: none; }
+.trust .ic svg { width: 18px; height: 18px; }
+.s3 { background: var(--tint); transition: background-color 0.6s ease; }
+.buy-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 48px; align-items: start; }
+.gallery { position: sticky; top: 96px; display: grid; gap: 12px; }
+.gallery .main { position: relative; background: #fff; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 1; box-shadow: 0 40px 80px -60px rgba(30, 20, 40, 0.5); }
+.gallery .main img { width: 100%; height: 100%; object-fit: cover; }
+.gallery .chip { position: absolute; left: 18px; top: 18px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 14px; font-size: 0.82rem; font-weight: 600; color: var(--ink); display: inline-flex; gap: 8px; align-items: center; }
+.gallery .chip i { width: 12px; height: 12px; border-radius: 50%; display: block; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+.thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.thumbs button { padding: 0; border: 2px solid transparent; border-radius: var(--r-sm); overflow: hidden; cursor: pointer; background: #fff; aspect-ratio: 1; transition: border-color 0.2s, transform 0.2s; }
+.thumbs button:hover { transform: translateY(-2px); }
+.thumbs button[aria-pressed="true"] { border-color: var(--ink); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.buybox { background: #fff; border-radius: var(--r-lg); padding: 34px; display: grid; gap: 20px; box-shadow: 0 40px 80px -60px rgba(30, 20, 40, 0.45); }
+.buybox h2 { font-size: clamp(1.6rem, 1.3rem + 0.8vw, 2rem); line-height: 1.12; }
+.rate { display: flex; gap: 8px; align-items: center; font-size: 0.92rem; flex-wrap: wrap; }
+.label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.label b { color: var(--ink); letter-spacing: 0.04em; text-transform: none; font-size: 0.92rem; }
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.sw { width: 34px; height: 34px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px #ddd5d8; cursor: pointer; padding: 0; transition: transform 0.2s, box-shadow 0.2s; }
+.sw:hover { transform: scale(1.08); }
+.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink); }
+.opts { display: grid; gap: 12px; }
+.opt { position: relative; border: 1.5px solid #e6dfe2; border-radius: var(--r-md); padding: 18px 20px 18px 54px; text-align: left; cursor: pointer; background: #fff; display: grid; gap: 8px; transition: border-color 0.2s, box-shadow 0.2s; }
+.opt::before { content: ""; position: absolute; left: 20px; top: 21px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #cfc6ca; background: #fff; }
+.opt[aria-pressed="true"] { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(246, 84, 151, 0.14); }
+.opt[aria-pressed="true"]::before { border-color: var(--pink); background: radial-gradient(circle, var(--pink) 0 5px, #fff 6px); }
+.opt .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.opt .row b { font-weight: 600; color: var(--ink); font-size: 1.02rem; }
+.opt .price { font-size: 1.5rem; color: var(--ink); }
+.opt .price s { font-size: 0.98rem; color: var(--muted); font-weight: 400; margin-right: 8px; font-stretch: 100%; }
+.opt ul { margin: 0; padding: 0; list-style: none; font-size: 0.92rem; color: #4f4b4d; display: grid; gap: 6px; }
+.opt ul li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
+.opt ul li::before { content: "✓"; color: var(--pink); font-weight: 700; }
+.opt:not([aria-pressed="true"]) ul { display: none; }
+.inbox { font-size: 0.92rem; color: #4f4b4d; background: var(--cream); padding: 12px 14px; border-radius: var(--r-sm); }
+.inbox b { color: var(--ink); }
+.feat { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; font-size: 0.93rem; color: #4a4648; }
+.feat li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; }
+.feat li::before { content: ""; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; background: var(--blush) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 12.5l4 4 8-9' fill='none' stroke='%23d82164' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / 12px no-repeat; }
+.buybox .btn { width: 100%; padding-block: 20px; font-size: 1.1rem; }
+.btn.done { background: var(--ink); box-shadow: none; }
+.mock-note { font-size: 0.8rem; color: #6b4b00; background: #fff4d6; padding: 8px 12px; border-radius: 8px; }
+.steps { margin-top: 88px; display: grid; grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr); gap: 40px; align-items: center; }
+.steps ol { position: relative; list-style: none; margin: 0; padding: 30px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: s; }
+.steps li { background: #fff; border-radius: var(--r-md); padding: 20px 18px; font-size: 0.94rem; display: grid; gap: 12px; align-content: start; counter-increment: s; color: #4a4648; }
+.steps li::before { content: counter(s); width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 0.85rem; transition: background 0.3s; }
+.steps li.on::before { background: var(--pink); animation: pulse 1.6s ease-out infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(246, 84, 151, 0.45); } 100% { box-shadow: 0 0 0 12px rgba(246, 84, 151, 0); } }
+.steps .rail { position: absolute; left: 15px; right: 15px; top: 0; height: 3px; background: rgba(246, 84, 151, 0.22); border-radius: 3px; }
+.steps .rail i { position: absolute; inset: 0; background: var(--pink); transform-origin: left; transform: scaleX(var(--p, 1)); border-radius: 3px; }
+.steps .rail b { position: absolute; top: -5px; left: calc(var(--p, 1) * 100%); width: 13px; height: 13px; margin-left: -6px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 5px rgba(246, 84, 151, 0.2); }
+
+/* 4. Les preuves */
+.s4 { background: var(--sky-soft); }
+.proof-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 48px; align-items: center; }
+.ufsbd { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 1; background: #3c6be0; box-shadow: 0 40px 80px -60px rgba(37, 52, 148, 0.7); }
+.ufsbd img { width: 100%; height: 100%; object-fit: cover; }
+.rings { display: grid; gap: 14px; }
+.ringc { background: #fff; border-radius: var(--r-md); padding: 22px 24px; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 22px; align-items: center; }
+.ring { position: relative; width: 112px; height: 112px; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 10; }
+.ring .bg { stroke: var(--blush-soft); }
+.ring .fg { stroke: var(--pink); stroke-linecap: round; }
+.ring b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.55rem; color: var(--ink); }
+.ringc span { font-size: 1.12rem; line-height: 1.3; color: var(--ink); }
+.dsrc { font-size: 0.82rem; color: var(--muted); }
+.bigquote { margin-top: 26px; font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); line-height: 1.35; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }
+.bigquote mark { background: linear-gradient(var(--blush), var(--blush)) no-repeat 0 88% / var(--hl, 100%) 42%; color: inherit; padding-inline: 2px; }
+.clients { margin-top: 88px; }
+.clients .lead { margin-bottom: 24px; }
+.meters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.meter { background: #fff; border-radius: var(--r-md); padding: 26px 24px 28px; display: grid; gap: 10px; align-content: start; }
+.meter b { font-size: clamp(2.6rem, 2rem + 1.6vw, 3.4rem); line-height: 1; color: var(--ink); }
+.meter span { color: var(--ink); font-weight: 500; font-size: 1.04rem; line-height: 1.3; }
+.meter small { display: block; color: var(--muted); font-size: 0.85rem; font-weight: 400; margin-top: 4px; }
+.meter .bar { height: 10px; border-radius: 99px; background: var(--blush-soft); overflow: hidden; margin-top: 8px; }
+.meter .bar i { display: block; height: 100%; border-radius: 99px; background: var(--pink); transform-origin: left; transform: scaleX(var(--f, 0.9)); }
+.duo { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 16px; margin-top: 16px; }
+.plaque { background: var(--pink); color: #fff; border-radius: var(--r-md); padding: 28px; display: grid; gap: 8px; align-content: center; }
+.plaque b { font-size: clamp(2rem, 1.6rem + 1.2vw, 2.7rem); line-height: 1.05; }
+.plaque span { font-size: 1.05rem; }
+.verb { background: #fff; border-radius: var(--r-md); padding: 28px 30px; display: grid; gap: 14px; align-content: center; }
+.verb q { font-size: 1.22rem; line-height: 1.4; color: var(--ink); quotes: "«\00a0" "\00a0»"; }
+.verb span { font-size: 0.86rem; color: var(--muted); display: inline-flex; gap: 10px; align-items: center; }
+.verb span i { width: 30px; height: 30px; border-radius: 50%; background: var(--blush); color: var(--pink-deep); display: grid; place-items: center; font-style: normal; font-weight: 600; }
+
+/* 5. Avis */
+.s5 { background: var(--blush-soft); overflow: hidden; }
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; height: 620px; overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent); }
+.cols .col { display: grid; gap: 16px; align-content: start; will-change: transform; }
+.rv { background: #fff; border-radius: var(--r-md); padding: 24px; display: grid; gap: 14px; align-content: start; box-shadow: 0 20px 40px -36px rgba(30, 20, 40, 0.5); }
+.rv .stars { font-size: 0.95rem; }
+.rv q { font-size: 1rem; line-height: 1.5; color: var(--text); quotes: "«\00a0" "\00a0»"; }
+.rv .meta { display: flex; gap: 10px; align-items: center; font-size: 0.86rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.rv .av { width: 34px; height: 34px; border-radius: 50%; background: var(--blush); color: var(--pink-deep); display: grid; place-items: center; font-weight: 600; font-size: 0.88rem; flex: none; }
+.rv .meta b { color: var(--ink); font-weight: 600; }
+.million { margin-top: 40px; text-align: center; font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.7rem); font-weight: 500; color: var(--ink); }
+.million b { color: var(--pink); font-weight: 600; }
+
+/* 6. FAQ */
+.s6 { background: var(--page); }
+.faq-grid { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 56px; align-items: start; }
+.faq-grid .head { position: sticky; top: 100px; margin: 0; }
+.faq { display: grid; gap: 10px; }
+.faq details { background: var(--cream); border-radius: var(--r-md); padding: 0 22px; transition: background-color 0.3s; }
+.faq details[open] { background: var(--blush-soft); }
+.faq summary { list-style: none; cursor: pointer; padding: 20px 46px 20px 0; position: relative; font-weight: 600; font-size: 1.06rem; line-height: 1.35; color: var(--ink); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--pink); display: grid; place-items: center; font-weight: 400; font-size: 1.3rem; line-height: 1; transition: transform 0.3s, background 0.3s, color 0.3s; }
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--pink); color: #fff; }
+.faq details p { padding: 0 0 22px; max-width: 64ch; color: #4a4648; }
+
+/* 7. Closing */
+.closing { position: relative; overflow: hidden; color: #fff; padding-block: 120px; }
+.closing-bg { position: absolute; inset: 0; background: var(--pink); z-index: 0; }
+.closing .grain { opacity: 0.25; z-index: 0; }
+.closing .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; }
+.closing-copy { display: grid; gap: 22px; justify-items: start; }
+.closing h2 { color: #fff; font-size: clamp(2.1rem, 1.5rem + 1.9vw, 3.1rem); line-height: 1.06; max-width: 18ch; }
+.closing h2 .w { opacity: 0.35; }
+.closing p { font-size: 1.18rem; max-width: 38ch; }
+.closing .btn { background: #fff; color: var(--ink); box-shadow: 0 18px 40px -18px rgba(80, 0, 30, 0.6); }
+.closing .btn:hover { background: var(--blush-soft); }
+.closing .micro { color: #ffe3ef; }
+.closing-media { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 1; box-shadow: 0 40px 80px -40px rgba(80, 0, 30, 0.6); }
+.closing-media img { width: 100%; height: 115%; object-fit: cover; will-change: transform; }
+
+footer.pf { padding-block: 32px; font-size: 0.78rem; color: var(--muted); background: var(--cream); }
+footer.pf .wrap { display: grid; gap: 8px; }
+footer.pf img { height: 22px; width: auto; margin-bottom: 6px; }
+
+.sticky-demo { position: sticky; bottom: 0; z-index: 20; display: none; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); padding: 10px 14px; align-items: center; gap: 10px; justify-content: space-between; font-size: 0.86rem; color: var(--ink); font-weight: 500; }
+.stage.phone .sticky-demo.on { display: flex; }
+.sticky-demo .btn { padding: 12px 16px; font-size: 0.9rem; box-shadow: none; }
+
+/* ---------- Mobile (vrai téléphone et cadre « Mobile ») ---------- */
+@container (max-width: 760px) {
+  .wrap { padding-inline: 20px; }
+  .sec { padding-block: 64px; }
+  .head { margin-bottom: 30px; }
+  .hero { padding-block: 22px 56px; }
+  .hero-grid, .proof-grid, .buy-grid, .steps, .faq-grid, .closing .wrap, .duo { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-copy { gap: 18px; }
+  .hero h1 { font-size: 1.85rem; }
+  .hero-sub { font-size: 1.04rem; }
+  .hero-media { aspect-ratio: 4 / 3.4; border-radius: var(--r-md); }
+  .rules { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .rule { grid-template-columns: 48px minmax(0, 1fr); padding: 20px; gap: 4px 14px; }
+  .rule .ic { width: 48px; height: 48px; grid-row: span 2; }
+  .rule b { font-size: 1.08rem; }
+  .vs { margin-top: 64px; }
+  .vs-row { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 6px; }
+  .vs-row .lb { grid-column: 1 / -1; padding: 16px 2px 8px; border-bottom: 0; }
+  .vs-head > div:first-child { display: none; }
+  .vs-row > div { padding: 10px 8px; font-size: 0.8rem; gap: 6px; flex-direction: column; }
+  .vs-row .c { border-radius: 12px; border-bottom: 0; }
+  .vs-head svg { width: 56px; height: 56px; }
+  .vs-head b { font-size: 0.8rem; }
+  .gallery { position: relative; top: 0; }
+  .buybox { padding: 22px; border-radius: var(--r-md); }
+  .feat { grid-template-columns: minmax(0, 1fr); }
+  .steps { margin-top: 56px; }
+  .steps ol { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 0; }
+  .steps .rail { display: none; }
+  .ringc { grid-template-columns: 84px minmax(0, 1fr); padding: 16px 18px; gap: 16px; }
+  .ring { width: 84px; height: 84px; }
+  .ring b { font-size: 1.15rem; }
+  .ufsbd { border-radius: var(--r-md); }
+  .clients { margin-top: 56px; }
+  .meters { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .meter { grid-template-columns: auto minmax(0, 1fr); gap: 4px 16px; align-items: center; padding: 18px 20px; }
+  .meter b { font-size: 2.3rem; grid-row: span 2; }
+  .meter .bar { grid-column: 1 / -1; }
+  .cols { grid-template-columns: minmax(0, 1fr); height: 540px; }
+  .cols .col:nth-child(n+2) { display: none; }
+  .faq-grid .head { position: static; }
+  .closing { padding-block: 72px; }
+  .closing-media { aspect-ratio: 16 / 11; border-radius: var(--r-md); }
+}
+@media (max-width: 600px) { .tools .name small { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .btn.shine::after, .vs .sweep, .vs .spin, .vs .head-b, .vs .waves path, .steps li.on::before { animation: none; }
+  .closing h2 .w { opacity: 1; }
+}
+/* Titres à fort impact : un mot clé en rose, souligné d'un trait de feutre qui se dessine au scroll */
+.h2.big { font-size: clamp(2.3rem, 1.6rem + 2.3vw, 3.4rem); line-height: 1.04; letter-spacing: -0.03em; }
+.sw-u { position: relative; font-style: normal; color: var(--pink); white-space: nowrap; }
+.swash { position: absolute; left: -2%; bottom: -0.16em; width: 104%; height: 0.32em; overflow: visible; }
+.swash path { fill: none; stroke: var(--pink); stroke-width: 4.5; stroke-linecap: round; }
+.vs-title { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1.08; letter-spacing: -0.03em; text-align: center; max-width: 21ch; margin: 0 auto 48px; }
+.vs-title .dim { color: #b8b0b4; }
+.vs .honest { text-align: center; margin-inline: auto; }
+@container (max-width: 760px) {
+  .h2.big { font-size: 2.1rem; }
+  .vs-title { font-size: 1.85rem; margin-bottom: 32px; }
+}
+@container (max-width: 760px) { .cta-row { justify-items: stretch; } .cta-row .btn { padding: 21px 24px; font-size: 1.15rem; } .cta-row .micro { text-align: center; padding-left: 0; } }
+/* Hero v12 : badge UFSBD officiel et carte produit qui flottent sur la photo, « 88 % » souligné au feutre */
+.hero-visual { position: relative; }
+.hero-badge { position: absolute; left: -54px; top: 38px; width: 210px; height: auto; filter: drop-shadow(0 18px 28px rgba(30, 40, 120, 0.28)); animation: bob 5.5s ease-in-out infinite; z-index: 2; }
+.hero-prod { position: absolute; right: -28px; bottom: -34px; width: 156px; aspect-ratio: 1; border-radius: 22px; overflow: hidden; border: 5px solid #fff; background: #fff; box-shadow: 0 30px 60px -28px rgba(216, 33, 100, 0.6); animation: bob 6.5s ease-in-out -2.5s infinite; z-index: 2; }
+.hero-prod img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.hero h1 .sw-u .swash { bottom: -0.12em; }
+@container (max-width: 760px) {
+  .hero-badge { left: -6px; top: 12px; width: 132px; }
+  .hero-prod { right: 10px; bottom: -18px; width: 92px; border-width: 4px; border-radius: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-badge, .hero-prod { animation: none; } }
+/* Comparatif sur mobile : un vrai tableau compact (pictos dans les cases, explication de la sonique sous le critère) */
+.lb-sub { display: none; }
+@container (max-width: 760px) {
+  .vs-row { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.55fr) minmax(0, 0.55fr) minmax(0, 0.82fr); column-gap: 5px; }
+  .vs-head > div:first-child { display: flex; }
+  .vs-row .lb { grid-column: auto; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; padding: 14px 10px 14px 2px; border-bottom: 1px solid var(--line); font-size: 0.7rem; letter-spacing: 0.08em; }
+  .lb-sub { display: block; font-size: 0.8rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink); line-height: 1.3; }
+  .vs-row > div.c { flex-direction: column; align-items: center; justify-content: center; padding: 12px 4px; border-radius: 0; border-bottom: 1px solid #f0e9ec; }
+  .vs-row .c.me { border-bottom-color: rgba(255, 255, 255, 0.25); }
+  .vs-row .c > span { display: none; }
+  .vs-head > div { padding: 14px 4px 12px; gap: 6px; border-bottom: 0 !important; }
+  .vs-head .c { border-radius: 14px 14px 0 0 !important; }
+  .vs-row:last-child .c { border-radius: 0 0 14px 14px !important; border-bottom: 0; }
+  .vs-row:last-child .lb { border-bottom: 0; }
+  .vs-head svg { width: 38px; height: 38px; }
+  .vs-head b { font-size: 0.66rem; line-height: 1.2; overflow-wrap: anywhere; }
+  .mk { width: 26px; height: 26px; font-size: 0.78rem; }
+  .mk.mid { font-size: 1.05rem; }
+}
+/* Bouton d'achat sur une ligne ; titre des preuves au même gabarit que les autres sur mobile */
+#buy { white-space: nowrap; }
+@container (max-width: 760px) {
+  #buy { font-size: 0.98rem; padding: 19px 12px; }
+  #buy svg { display: none; }
+  .buybox { padding: 20px 18px; }
+  #s5 .h2.big { font-size: 1.95rem; }
+  #s4 .h2.big { font-size: 1.95rem; }
+}
+/* ===== v13 : immersion (écrans bord à bord + scène épinglée) ===== */
+/* A. Scène des 3 conseils */
+.scene { position: relative; height: 330vh; margin-top: 64px; --sbg: #f9ceda; --sbg2: #fdeef3; }
+.scene-pin { position: sticky; top: 54px; height: calc(100vh - 54px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden; }
+.scene-vis { position: relative; background: var(--sbg2); transition: background-color 0.6s; }
+.sv { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transform: scale(1.05); transition: opacity 0.6s ease, transform 1s ease; }
+.sv.on { opacity: 1; transform: none; }
+.sv img { width: 100%; height: 100%; object-fit: cover; }
+.timer { position: relative; width: min(68%, 340px); aspect-ratio: 1; }
+.timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.tbg { fill: #fff; stroke: rgba(246, 84, 151, 0.18); stroke-width: 10; }
+.tfg { fill: none; stroke: var(--pink); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.timer b { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(3.4rem, 2.4rem + 3vw, 5.4rem); color: var(--ink); }
+.scene-txt { position: relative; background: var(--sbg); transition: background-color 0.6s; }
+.st { position: absolute; left: 64px; right: 56px; top: 50%; transform: translateY(-42%); opacity: 0; transition: opacity 0.5s ease, transform 0.6s ease; }
+.st.on { opacity: 1; transform: translateY(-50%); }
+.st .idx { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.12em; color: var(--ink); opacity: 0.6; }
+.st h3 { font-size: clamp(2.3rem, 1.6rem + 2.2vw, 3.5rem); line-height: 1.03; letter-spacing: -0.03em; margin: 14px 0 18px; }
+.st p { font-size: 1.2rem; line-height: 1.45; color: #2f2b2d; max-width: 34ch; }
+.bars { position: absolute; left: 64px; right: 56px; bottom: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bars i { display: block; height: 3px; border-radius: 3px; background: rgba(29, 29, 27, 0.16); overflow: hidden; }
+.bars b { display: block; height: 100%; background: var(--ink); transform-origin: left; transform: scaleX(var(--f, 0)); }
+.s2 .vs { margin-top: 104px; }
+
+/* B. Hero bord à bord */
+.hero { padding-block: 0; }
+.hero .hero-grid { max-width: none; padding: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; min-height: 84vh; align-items: stretch; }
+.hero .hero-copy { align-content: center; padding: 40px 56px 80px 80px; }
+.hero .hero-visual { height: 100%; }
+.hero .hero-media { height: 100%; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+.hero-badge { left: -64px; top: 64px; }
+.hero-prod { right: 36px; bottom: 36px; }
+
+/* B. Preuves bord à bord */
+.s4 { padding: 0; }
+.proof-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 92vh; }
+.proof-split .ufsbd { border-radius: 0; aspect-ratio: auto; height: 100%; box-shadow: none; }
+.proof-side { padding: 88px 64px; display: grid; gap: 22px; align-content: center; }
+.proof-side .head { margin: 0; }
+.clients-wrap { padding-block: 88px 104px; }
+.clients-wrap .clients { margin-top: 0; }
+
+/* B. Closing bord à bord */
+.closing { padding-block: 0; }
+.closing .wrap { max-width: none; padding: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; min-height: 86vh; align-items: stretch; }
+.closing-copy { padding: 96px 56px 96px 80px; align-content: center; }
+.closing-media { border-radius: 0; aspect-ratio: auto; height: 100%; box-shadow: none; }
+
+@container (max-width: 760px) {
+  .scene { height: 300vh; margin-top: 40px; }
+  .scene-pin { grid-template-columns: minmax(0, 1fr); grid-template-rows: 48% 52%; }
+  .timer { width: min(62%, 220px); }
+  .timer b { font-size: 3rem; }
+  .st { left: 20px; right: 20px; top: 46%; }
+  .st h3 { font-size: 1.95rem; margin: 10px 0 12px; }
+  .st p { font-size: 1.02rem; }
+  .bars { left: 20px; right: 20px; bottom: 92px; }
+  .s2 .vs { margin-top: 64px; }
+  .hero .hero-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .hero .hero-copy { padding: 8px 20px 32px; }
+  .hero .hero-media { aspect-ratio: 4 / 3.6; height: auto; }
+  .hero-badge { left: 12px; top: 12px; }
+  .hero-prod { right: 12px; bottom: 12px; }
+  .proof-split { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .proof-split .ufsbd { aspect-ratio: 1; height: auto; }
+  .proof-side { padding: 48px 20px 8px; }
+  .clients-wrap { padding-block: 40px 64px; }
+  .closing .wrap { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .closing-copy { padding: 64px 20px 40px; }
+  .closing-media { aspect-ratio: 4 / 3; height: auto; }
+}
+/* ===== v14 : interactions (5 modes, essai de 30 jours) ===== */
+.modes { margin-top: 104px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: center; background: var(--cream); border-radius: var(--r-lg); padding: 48px; }
+.modes-vis { display: grid; place-items: center; background: var(--blush-soft); border-radius: var(--r-md); aspect-ratio: 1; }
+.mbrush { width: 62%; height: auto; overflow: visible; }
+.mhead { transform-box: fill-box; transform-origin: 50% 100%; animation: mbuzz var(--mspd, 0.07s) linear infinite; }
+@keyframes mbuzz { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(calc(var(--mamp, 2px) * -1)); } 75% { transform: translateX(var(--mamp, 2px)); } }
+.mwaves path { opacity: var(--mwav, 0.9); animation: mwave var(--mwspd, 0.9s) ease-in-out infinite; }
+.mwaves path:nth-child(2n) { animation-delay: 0.2s; }
+@keyframes mwave { 0%, 100% { opacity: calc(var(--mwav, 0.9) * 0.25); } 50% { opacity: var(--mwav, 0.9); } }
+.mled { fill: var(--mled, #3b7be0); filter: drop-shadow(0 0 6px var(--mled, #3b7be0)); }
+.modes[data-blink="1"] .mled { animation: mblink 0.9s steps(2, jump-none) infinite; }
+@keyframes mblink { 50% { opacity: 0.15; } }
+.modes-txt { display: grid; gap: 22px; }
+.mtabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.mtabs button { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid #e6dfe2; background: #fff; border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+.mtabs button i { width: 9px; height: 9px; border-radius: 50%; display: block; }
+.mtabs button i.blink { animation: mblink 0.9s steps(2, jump-none) infinite; }
+.mtabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.mdesc { font-size: 1.22rem; line-height: 1.45; color: var(--ink); min-height: 3.6em; }
+.mlevel { display: flex; align-items: center; gap: 14px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.mlevel b { display: flex; gap: 5px; }
+.mlevel i { width: 26px; height: 8px; border-radius: 4px; background: #eadde3; transition: background 0.3s; }
+.mlevel i.on { background: var(--pink); }
+
+.trial { position: relative; height: 230vh; background: var(--navy); color: #fff; }
+.trial-pin { position: sticky; top: 54px; height: calc(100vh - 54px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden; }
+.trial-txt { padding: 56px 56px 56px 80px; display: grid; gap: 20px; align-content: center; }
+.trial h2 { color: #fff; }
+.trial .lead { color: #d7dbf2; }
+.tday { display: flex; align-items: baseline; gap: 14px; margin-top: 14px; }
+.tday span { font-size: 1rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #aab2e6; }
+.tday b { font-size: clamp(4rem, 3rem + 3vw, 6.2rem); line-height: 0.9; color: var(--blush); }
+.truler { position: relative; height: 3px; background: rgba(255, 255, 255, 0.2); border-radius: 3px; }
+.truler i { position: absolute; inset: 0; background: var(--pink); transform-origin: left; transform: scaleX(var(--t, 0)); border-radius: 3px; }
+.truler .tick { position: absolute; top: -6px; left: calc(var(--x) * 100%); width: 2px; height: 15px; margin-left: -1px; background: #fff; }
+.tsteps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tsteps li { font-size: 0.92rem; line-height: 1.35; color: #aab2e6; transition: color 0.3s; display: block; }
+.tsteps li b { display: block; margin-bottom: 4px; font-size: 0.95rem; color: inherit; }
+.tsteps li.on { color: #fff; }
+.trial-media { position: relative; }
+.trial-media img { width: 100%; height: 100%; object-fit: cover; }
+
+@container (max-width: 760px) {
+  .modes { grid-template-columns: minmax(0, 1fr); padding: 22px; gap: 22px; margin-top: 64px; border-radius: var(--r-md); }
+  .modes-vis { aspect-ratio: 16 / 11; }
+  .mbrush { width: 34%; }
+  .mtabs button { padding: 8px 13px; font-size: 0.86rem; }
+  .mdesc { font-size: 1.05rem; }
+  .trial { height: 210vh; }
+  .trial-pin { grid-template-columns: minmax(0, 1fr); grid-template-rows: 36% 64%; }
+  .trial-media { order: -1; }
+  .trial-txt { padding: 24px 20px 90px; gap: 14px; }
+  .tday b { font-size: 3.6rem; }
+  .tsteps { gap: 8px; }
+  .tsteps li { font-size: 0.8rem; }
+}
+@media (prefers-reduced-motion: reduce) { .mhead, .mwaves path, .modes[data-blink="1"] .mled, .mtabs button i.blink { animation: none; } }
+/* ===== v15 : plus aucun écran épinglé, tout défile normalement ===== */
+.scene { height: auto; margin-top: 64px; display: grid; }
+.srow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 72vh; }
+.srow.rev .scene-vis { order: 2; }
+.srow .scene-vis { position: relative; display: grid; place-items: center; overflow: hidden; background: var(--sbg2); }
+.srow .scene-vis img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 1.4s cubic-bezier(.2,.8,.2,1); }
+.srow.in .scene-vis img { transform: none; }
+.srow .scene-txt { background: var(--sbg); display: grid; align-content: center; padding: 64px 56px 64px 64px; }
+.srow .st { position: static; transform: translateY(26px); opacity: 0; transition: opacity 0.7s ease, transform 0.8s cubic-bezier(.2,.8,.2,1); }
+.srow.in .st { opacity: 1; transform: none; }
+.tfg { stroke-dashoffset: 0; }
+.trial { height: auto; }
+.trial-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 80vh; }
+@container (max-width: 760px) {
+  .srow { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .srow.rev .scene-vis { order: 0; }
+  .srow .scene-vis { aspect-ratio: 4 / 3; }
+  .srow .scene-txt { padding: 36px 20px 44px; }
+  .trial-in { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .trial-in .trial-media { order: -1; aspect-ratio: 4 / 3; }
+  .trial-in .trial-txt { padding: 36px 20px 48px; }
+}
+@media (prefers-reduced-motion: reduce) { .srow .st, .srow .scene-vis img { opacity: 1; transform: none; transition: none; } }
+/* Sur grand écran, les textes des sections bord à bord s'alignent sur la grille centrée (1100 px) du reste de la page */
+@container (min-width: 761px) {
+  .hero, .closing, .trial, .s4, .scene { --gut: max(56px, calc((100cqw - 1100px) / 2 + 40px)); }
+  .hero .hero-copy, .closing-copy, .trial-txt { padding-left: var(--gut); }
+  .proof-side { padding-right: var(--gut); }
+  .srow:not(.rev) .scene-txt { padding-right: var(--gut); }
+  .srow.rev .scene-txt { padding-left: var(--gut); }
+}
+/* Hero : la barre logo passe par-dessus, la photo prend toute la hauteur du hero */
+.hero .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 4; }
+.hero .nav a { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(6px); padding: 9px 16px; border-radius: 999px; box-shadow: 0 8px 24px -14px rgba(30, 20, 40, 0.45); }
+.hero .hero-grid { min-height: 92vh; }
+.hero .hero-copy { padding-top: 112px; }
+@container (max-width: 760px) {
+  .hero .nav { position: relative; }
+  .hero .hero-copy { padding-top: 8px; }
+}
+/* Hero : fond rose pâle de la marque (le rose passait derrière la photo) ; section 2 sur le même rose que la bande du minuteur */
+.hero { background: radial-gradient(75% 85% at 30% 45%, #fbd9e4 0%, rgba(253, 238, 243, 0) 70%), #fdeef3; }
+.s2 { background: #fdeef3; }
+/* Hero : fond uni, exactement le rose de la section 2 (plus de halo ni de grain) */
+.hero { background: #fdeef3; }
+.hero > .grain { display: none; }
+/* Les 3 conseils sur mobile : une carte par conseil (image en haut, numéro posé dessus, texte dessous), espacées */
+@container (max-width: 760px) {
+  .scene { gap: 16px; padding-inline: 16px; margin-top: 32px; }
+  .srow { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 18px 36px -28px rgba(30, 20, 40, 0.45); }
+  .srow .scene-vis { aspect-ratio: 16 / 10; }
+  .srow[data-i="0"] .scene-vis { background: #fbdbe6; }
+  .srow[data-i="0"] .timer { width: min(52%, 190px); }
+  .srow[data-i="0"] .timer b { font-size: 2.5rem; }
+  .srow[data-i="1"] .scene-vis img { object-fit: contain; padding: 14px 0; transform: none; }
+  .srow .scene-txt { position: static; padding: 22px 22px 28px; }
+  .srow .st { transform: none; }
+  .srow .st .idx { position: absolute; top: 14px; left: 14px; z-index: 2; background: #fff; color: var(--ink); opacity: 1; font-size: 0.8rem; padding: 6px 12px; border-radius: 999px; box-shadow: 0 6px 16px -10px rgba(30, 20, 40, 0.5); }
+  .srow .st h3 { font-size: 1.7rem; margin: 0 0 10px; }
+}
+/* ===== 5 modes immersifs : bande pleine largeur, couleur et nom du mode en grand, ondes, onde de vibration ===== */
+.modes.mz { --mzbg: #bad9e1; margin-inline: calc(50% - 50cqw); margin-top: 104px; border-radius: 0; padding: 0; background: var(--mzbg); transition: background-color 0.7s ease; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 0; min-height: 82vh; overflow: hidden; align-items: stretch; }
+.mz-stage { position: relative; display: grid; place-items: center; overflow: hidden; min-height: 520px; }
+.mz-word { position: absolute; left: 50%; top: 44%; translate: -50% -50%; font-size: clamp(6rem, 3rem + 11cqw, 15rem); font-weight: 800; font-stretch: 125%; letter-spacing: -0.04em; line-height: 1; color: rgba(255, 255, 255, 0.55); white-space: nowrap; pointer-events: none; }
+.mz-ring { position: absolute; left: 50%; top: 40%; width: 220px; height: 220px; margin: -110px 0 0 -110px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.85); opacity: 0; animation: mzring calc(var(--mwspd, 0.9s) * 3) ease-out infinite; }
+.mz-ring:nth-of-type(2) { animation-delay: var(--mwspd, 0.9s); }
+.mz-ring:nth-of-type(3) { animation-delay: calc(var(--mwspd, 0.9s) * 2); }
+@keyframes mzring { 0% { transform: scale(0.45); opacity: 0.9; } 100% { transform: scale(2.4); opacity: 0; } }
+.modes.mz .mbrush { position: relative; width: auto; height: min(62vh, 440px); z-index: 1; filter: drop-shadow(0 30px 40px rgba(30, 20, 40, 0.18)); }
+.mz-wave { position: absolute; left: 6%; right: 6%; bottom: 7%; width: 88%; height: 80px; z-index: 1; overflow: visible; }
+.mz-wave path { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; }
+.mz-panel { background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(6px); padding: 64px var(--gut, 64px) 64px 56px; align-content: center; }
+.mz-panel .h3 { font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.03em; }
+.mz .mtabs button { position: relative; overflow: hidden; }
+.mz .mtabs button.run::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--pink); transform-origin: left; animation: mzrun 4.2s linear forwards; }
+@keyframes mzrun { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.mz .mdesc { font-size: 1.3rem; }
+@container (max-width: 760px) {
+  .modes.mz { grid-template-columns: minmax(0, 1fr); min-height: 0; margin-top: 64px; padding: 0; border-radius: 0; }
+  .mz-stage { min-height: 380px; }
+  .mz-word { font-size: 5.6rem; top: 42%; }
+  .mz-ring { width: 160px; height: 160px; margin: -80px 0 0 -80px; }
+  .modes.mz .mbrush { height: 290px; }
+  .mz-wave { height: 56px; bottom: 5%; }
+  .mz-panel { padding: 28px 20px 36px; }
+  .mz .mtabs { flex-wrap: wrap; gap: 8px; }
+  .mz .mtabs button { padding: 9px 14px; font-size: 0.88rem; }
+  .mz .mtabs::-webkit-scrollbar { display: none; }
+  .mz .mtabs button { flex: none; }
+  .mz .mdesc { font-size: 1.08rem; }
+}
+@media (prefers-reduced-motion: reduce) { .mz-ring { animation: none; } .mz .mtabs button.run::after { animation: none; } }
+/* Les 3 conseils sur mobile, v2 : un plein écran par conseil, texte posé sur l'image dans un fondu de la couleur du conseil */
+@container (max-width: 760px) {
+  .scene { gap: 0; padding-inline: 0; margin-top: 40px; }
+  .srow { display: block; position: relative; min-height: 88svh; border-radius: 0; box-shadow: none; overflow: hidden; background: var(--sbg); }
+  .srow .scene-vis { position: absolute; inset: 0; aspect-ratio: auto; background: var(--sbg2); }
+  .srow[data-i="0"] .scene-vis { background: var(--sbg); place-items: start center; padding-top: 11svh; }
+  .srow[data-i="0"] .timer { width: min(64%, 250px); }
+  .srow[data-i="0"] .timer b { font-size: 3.4rem; }
+  .srow[data-i="1"] .scene-vis img { inset: 0 0 34% 0; height: 66%; object-fit: contain; padding: 64px 0 0; }
+  .srow[data-i="2"] .scene-vis img { object-position: 50% 20%; }
+  .srow .scene-txt { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; background: linear-gradient(to top, var(--sbg) 62%, transparent); padding: 96px 22px 40px; }
+  .srow[data-i="0"] .scene-txt { background: none; }
+  .srow .st .idx { position: static; display: inline-block; margin-bottom: 14px; background: rgba(255, 255, 255, 0.85); }
+  .srow .st h3 { font-size: 2.15rem; line-height: 1.02; margin: 0 0 12px; }
+  .srow .st p { font-size: 1.08rem; }
+}
+/* Mobile : rythme de lecture resserré (preuves) et écrans des conseils moins hauts */
+@container (max-width: 760px) {
+  .proof-side { padding: 40px 20px 0; gap: 16px; }
+  .bigquote { margin-top: 8px; }
+  .clients-wrap { padding-block: 20px 56px; }
+  .clients .lead { margin-bottom: 14px; }
+  .meters { gap: 8px; }
+  .meter { padding: 14px 18px 16px; gap: 2px 14px; }
+  .meter b { font-size: 2rem; }
+  .meter .bar { margin-top: 6px; height: 8px; }
+  .srow { min-height: 72svh; }
+  .srow[data-i="0"] .scene-vis { padding-top: 7svh; }
+  .srow[data-i="1"] .scene-vis img { inset: 0 0 36% 0; height: 64%; padding: 28px 0 0; }
+  .srow .scene-txt { padding: 72px 22px 32px; }
+  .duo { gap: 8px; margin-top: 8px; }
+  .plaque, .verb { padding: 22px 20px; }
+}
+/* 5 modes : la vraie brosse (photo détourée), tête qui vibre seule, voyant allumé sur le bouton */
+.modes.mz .mbrush.mz-brush { position: relative; z-index: 1; height: min(62vh, 460px); width: auto; aspect-ratio: 101 / 857; display: flex; flex-direction: column; filter: drop-shadow(0 30px 40px rgba(30, 20, 40, 0.22)); }
+.mz-brush img { display: block; width: 100%; height: auto; }
+.mz-brush .mz-head { transform-origin: 50% 100%; }
+.mz-led { position: absolute; left: 44.5%; top: 57.8%; width: 30%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 2px solid var(--mled, #3b7be0); box-shadow: 0 0 10px 2px var(--mled, #3b7be0), inset 0 0 6px var(--mled, #3b7be0); }
+.modes[data-blink="1"] .mz-led { animation: mblink 0.9s steps(2, jump-none) infinite; }
+.modes.mz .mbrush.mz-brush { margin-bottom: 70px; }
+@container (max-width: 760px) { .modes.mz .mbrush.mz-brush { height: 290px; margin-bottom: 56px; } .mz-wave { bottom: 3%; } }
+/* Page brute (lp-preview) : pas de bureau, pas de cadre, pleine largeur */
+body { padding: 0; background: var(--page); }
+.stage { max-width: none; margin: 0; border-radius: 0; box-shadow: none; }
+.progress { top: 0; }
+</style>
+</head>
+<body>
+
+
+<nav class="struct" hidden aria-hidden="true"><ol id="struct-list"></ol></nav>
+
+<div class="stage" id="stage">
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+  <section class="hero" id="s1" data-bc-section="hero">
+    <div class="grain" aria-hidden="true"></div>
+    <header class="nav"><div class="wrap"><img src="assets/mv-logo.png" alt="MyVariations"></div></header>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 id="h1">Testée par plus de 5&nbsp;000 pros du dentaire. <em>88&nbsp;% la&nbsp;recommandent.</em></h1>
+        <p class="hero-sub" id="h1sub">Voici ce qu'ils conseillent, et pourquoi ça peut changer votre façon de vous brosser les dents.</p>
+        <div class="cta-row" id="hero-cta">
+          <a class="btn shine" href="#s3" data-bc-cta="hero">Je découvre l'offre<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="micro">Satisfait ou remboursé · Livré en 48 h</span>
+        </div>
+      </div>
+      <div class="hero-visual"><div class="hero-media" id="hero-media"><span class="hero-blob" aria-hidden="true"></span><img src="assets/hero-brossage.jpg" alt="Une femme sourit en se brossant les dents avec une brosse sonique MyVariations"></div><img class="hero-badge" id="hero-badge" src="assets/ufsbd-badge.png" alt="Recommandé par les chirurgiens-dentistes, Union Française pour la Santé Bucco-Dentaire"><div class="hero-prod" id="hero-prod"><img src="assets/pink-boite.jpg" alt="La brosse MyVariations Pastel Rose et sa boîte"></div></div>
+    </div>
+  </section>
+  <section class="sec s2" id="s2" data-bc-section="comparison">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="h2 big">Ce que les dentistes demandent à une <em class="sw-u">brosse à dents<svg class="swash" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 13 C 45 5, 110 3, 197 10"/></svg></em></h2>
+        <p class="lead">Les dentistes donnent tous les trois mêmes conseils. Le soir, devant le lavabo, on les oublie vite :</p>
+      </div>
+    </div>
+    <div class="scene" id="scene" aria-label="Les trois conseils des dentistes">
+      <div class="srow" data-i="0" style="--sbg:#f9ceda;--sbg2:#fdeef3">
+        <div class="scene-vis"><div class="timer"><svg viewBox="0 0 200 200" aria-hidden="true"><circle class="tbg" cx="100" cy="100" r="88"/><circle class="tfg" id="tfg" cx="100" cy="100" r="88" pathLength="1"/></svg><b class="num" id="tdig">2:00</b></div></div>
+        <div class="scene-txt"><div class="st"><span class="idx num">01 / 03</span><h3>Deux minutes, deux fois par jour.</h3><p>On s'arrête souvent avant.</p></div></div>
+      </div>
+      <div class="srow rev" data-i="1" style="--sbg:#c6dca5;--sbg2:#eef5e6">
+        <div class="scene-vis"><img src="assets/brosse-tete.png" alt="La brosse MyVariations et sa tête à brins souples"></div>
+        <div class="scene-txt"><div class="st"><span class="idx num">02 / 03</span><h3>Des brins souples.</h3><p>Les dentistes et l'UFSBD déconseillent les brins médium ou durs : ils peuvent blesser la gencive et la faire saigner.</p></div></div>
+      </div>
+      <div class="srow" data-i="2" style="--sbg:#bad9e1;--sbg2:#eaf4f7">
+        <div class="scene-vis"><img src="assets/rose4.jpg" alt="Une femme tient sa brosse MyVariations du bout des doigts, sans forcer"></div>
+        <div class="scene-txt"><div class="st"><span class="idx num">03 / 03</span><h3>Sans appuyer.</h3><p>Avec une brosse manuelle, tout repose sur votre main : on appuie trop devant, pas assez au fond.</p></div></div>
+      </div>
+    </div>
+    <div class="wrap">
+
+      <div class="vs" id="vs">
+        <h3 class="vs-title"><span class="dim">Manuelle, rotative ou</span> <em class="sw-u">sonique<svg class="swash" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 13 C 45 5, 110 3, 197 10"/></svg></em> : laquelle tient ces trois conseils pour vous ?</h3>
+        <div class="vs-grid" role="table" aria-label="Comparatif des trois brosses">
+          <div class="vs-row vs-head" role="row"><div role="columnheader"></div><div class="c" data-c="1" role="columnheader"><svg viewBox="0 0 150 150" aria-hidden="true"><g class="sweep"><rect x="20" y="66" width="110" height="18" rx="9" fill="#d9d2d5"/><g stroke="#9a9396" stroke-width="5" stroke-linecap="round"><line x1="34" y1="62" x2="34" y2="40"/><line x1="48" y1="62" x2="48" y2="40"/><line x1="62" y1="62" x2="62" y2="40"/></g></g><path d="M30 112 H120 M30 112 l10 -7 M30 112 l10 7 M120 112 l-10 -7 M120 112 l-10 7" stroke="#1d1d1b" stroke-width="3" fill="none" stroke-linecap="round"/></svg><b>Manuelle</b></div><div class="c" data-c="2" role="columnheader"><svg viewBox="0 0 150 150" aria-hidden="true"><rect x="66" y="80" width="18" height="60" rx="9" fill="#d9d2d5"/><circle cx="75" cy="56" r="26" fill="#ece7e9" stroke="#9a9396" stroke-width="4"/><g class="spin"><path d="M38 42 A42 42 0 0 1 108 30" stroke="#1d1d1b" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M100 22 l9 8 -11 5" stroke="#1d1d1b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg><b>Rotative</b></div><div class="c me" data-c="3" role="columnheader"><svg viewBox="0 0 150 150" aria-hidden="true"><rect x="66" y="78" width="18" height="64" rx="9" fill="#fde3ec"/><rect class="head-b" x="60" y="20" width="30" height="60" rx="14" fill="#ffffff" stroke="#ffffff" stroke-width="3"/><g class="waves" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"><path d="M46 34 q-8 16 0 32"/><path d="M34 28 q-12 22 0 44"/><path d="M104 34 q8 16 0 32"/><path d="M116 28 q12 22 0 44"/></g></svg><b>Sonique MyVariations</b></div></div>
+          <div class="vs-row" role="row"><div class="lb" role="rowheader">2 minutes</div><div class="c" data-c="1" role="cell"><i class="mk no" aria-label="Non">✕</i><span>À vous de compter</span></div><div class="c" data-c="2" role="cell"><i class="mk mid" aria-label="En partie">~</i><span>Selon le modèle</span></div><div class="c me" data-c="3" role="cell"><i class="mk yes" aria-label="Oui">✓</i><span>Un minuteur, elle s'arrête seule</span></div></div>
+          <div class="vs-row" role="row"><div class="lb" role="rowheader">Brins souples</div><div class="c" data-c="1" role="cell"><i class="mk mid" aria-label="En partie">~</i><span>Selon la brosse achetée</span></div><div class="c" data-c="2" role="cell"><i class="mk mid" aria-label="En partie">~</i><span>Selon la tête</span></div><div class="c me" data-c="3" role="cell"><i class="mk yes" aria-label="Oui">✓</i><span>2 452 brins souples, jamais de médium</span></div></div>
+          <div class="vs-row" role="row"><div class="lb" role="rowheader">Sans appuyer</div><div class="c" data-c="1" role="cell"><i class="mk no" aria-label="Non">✕</i><span>Tout dépend de votre pression</span></div><div class="c" data-c="2" role="cell"><i class="mk mid" aria-label="En partie">~</i><span>À poser sur chaque dent</span></div><div class="c me" data-c="3" role="cell"><i class="mk yes" aria-label="Oui">✓</i><span>Il suffit de la guider</span></div></div>
+          <div class="vs-row" role="row"><div class="lb" role="rowheader">Entre les dents</div><div class="c" data-c="1" role="cell"><i class="mk mid" aria-label="En partie">~</i><span>Là où passent les brins</span></div><div class="c" data-c="2" role="cell"><i class="mk mid" aria-label="En partie">~</i><span>Dent par dent</span></div><div class="c me" data-c="3" role="cell"><i class="mk yes" aria-label="Oui">✓</i><span>Les vibrations brassent l'eau jusqu'entre les dents</span></div></div>
+        </div>
+      </div>
+
+      <div class="modes mz" id="modes" data-bc-section="benefit-modes" data-mode="0">
+        <div class="mz-stage" aria-hidden="true">
+          <b class="mz-word" id="mzword">White</b>
+          <span class="mz-ring"></span><span class="mz-ring"></span><span class="mz-ring"></span>
+          <div class="mbrush mz-brush"><img class="mhead mz-head" src="assets/mz-tete.png" alt=""><img class="mz-body" src="assets/mz-corps.png" alt=""><i class="mz-led"></i></div>
+          <svg class="mz-wave" viewBox="0 0 600 80" preserveAspectRatio="none"><path id="mzwave" d="M0 40 H600"/></svg>
+        </div>
+        <div class="modes-txt mz-panel">
+          <h3 class="h3">5 modes, une seule brosse</h3>
+          <div class="mtabs" role="tablist" aria-label="Modes de brossage">
+            <button type="button" role="tab" aria-selected="true" data-m="0" data-bc-ignore><i style="background:#3b7be0"></i>White</button>
+            <button type="button" role="tab" aria-selected="false" data-m="1" data-bc-ignore><i style="background:#3fb36b"></i>Clean</button>
+            <button type="button" role="tab" aria-selected="false" data-m="2" data-bc-ignore><i style="background:#e5484d"></i>Sensible</button>
+            <button type="button" role="tab" aria-selected="false" data-m="3" data-bc-ignore><i class="blink" style="background:#3b7be0"></i>Polish</button>
+            <button type="button" role="tab" aria-selected="false" data-m="4" data-bc-ignore><i class="blink" style="background:#3fb36b"></i>Massage</button>
+          </div>
+          <p class="mdesc" id="mdesc" aria-live="polite">Le plus puissant, pour un nettoyage un peu plus vigoureux.</p>
+          <div class="mlevel" aria-hidden="true"><span>Intensité</span><b><i></i><i></i><i></i><i></i><i></i></b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="trust" data-bc-section="trust-bar" aria-label="Recommandée par l'UFSBD · plus de 6 000 pharmacies · 4,7/5 sur Trustpilot · livrée en 48 h · satisfait ou remboursé">
+    <div class="track" id="trust-track" aria-hidden="true"></div>
+  </div>
+  <section class="sec s3" id="s3" data-bc-section="buy">
+    <div class="wrap">
+      <div class="buy-grid">
+        <div class="gallery">
+          <div class="main"><img id="g-main" src="assets/pink-boite.jpg" alt="La brosse MyVariations et sa boîte"><span class="chip"><i id="chip-dot" style="background:#f4b9c8"></i><span id="chip-name">Pastel Rose</span></span></div>
+          <div class="thumbs" id="thumbs">
+            <button type="button" aria-pressed="true" data-src="assets/pink-boite.jpg" data-color="1" data-bc-ignore><img src="assets/pink-boite.jpg" alt="Vue de la couleur choisie"></button>
+            <button type="button" aria-pressed="false" data-src="assets/duo.jpg" data-bc-ignore><img src="assets/duo.jpg" alt="Deux brosses sur un lavabo"></button>
+            <button type="button" aria-pressed="false" data-src="assets/lineup.jpg" data-bc-ignore><img src="assets/lineup.jpg" alt="Les six couleurs côte à côte"></button>
+          </div>
+        </div>
+        <div class="buybox">
+          <span class="kicker">Ce que vous recevez</span>
+          <h2>MyVariations, testée par les dentistes, livrée chez vous en 48 h</h2>
+          <div class="rate"><span class="stars" aria-hidden="true">★★★★★</span><b>4,7/5</b><span class="micro">sur 36 419 avis Trustpilot</span></div>
+          <div><span class="label">Couleur · <b id="c-name">Pastel Rose</b></span><div class="swatches" id="sw"></div></div>
+          <div class="opts" id="opts">
+            <button type="button" class="opt" aria-pressed="true" data-bc-ignore>
+              <span class="row"><b>Avec les têtes en abonnement</b><span class="price num"><s>69,99 €</s>59,99 €</span></span>
+              <ul>
+                <li>Une tête neuve à 5,99 €, livrée tous les 1, 2 ou 3 mois, au choix</li>
+                <li>Un e-mail de rappel 3 jours avant chaque envoi</li>
+                <li>Vous modifiez, décalez ou arrêtez quand vous voulez, sans engagement</li>
+                <li>La garantie de la brosse court pendant toute la durée de l'abonnement</li>
+              </ul>
+            </button>
+            <button type="button" class="opt" aria-pressed="false" data-bc-ignore>
+              <span class="row"><b>Achat unique</b><span class="price num">69,99 €</span></span>
+            </button>
+          </div>
+          <button type="button" class="btn shine" id="buy" data-bc-cta="buy"><span id="buy-t">J'ajoute ma brosse au panier</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <span class="micro" style="text-align:center">Satisfait ou remboursé · Livré en 48 h · Aussi en pharmacie</span>
+          <p class="mock-note" id="mock-note" hidden>Maquette : ce bouton sera relié au panier de la boutique au build.</p>
+          <p class="inbox"><b>Dans la boîte :</b> la brosse, une tête à poils souples, le câble de charge USB-C, le capuchon de protection.</p>
+          <div><span class="label">Ce qu'elle fait</span>
+            <ul class="feat">
+              <li>40 000 micro-mouvements par minute</li>
+              <li>Un mois d'autonomie, une charge en USB-C, pas de socle sur le lavabo</li>
+              <li>5 modes : White, Clean, Sensible, Polish, Massage</li>
+              <li>Un minuteur de 2 minutes, la brosse s'arrête seule</li>
+              <li>2 452 brins souples en nylon DuPont</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="steps" data-bc-section="how-it-works">
+        <h3 class="h3">Comment marche l'abonnement</h3>
+        <ol id="stepper">
+          <span class="rail" aria-hidden="true"><i></i><b></b></span>
+          <li>Vous choisissez la fréquence : tous les 1, 2 ou 3 mois</li>
+          <li>On vous prévient 3 jours avant chaque envoi</li>
+          <li>Votre tête neuve arrive dans la boîte aux lettres, 5,99 €</li>
+          <li>Vous modifiez, décalez ou arrêtez quand vous voulez</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="trial" id="trial" data-bc-section="guarantee">
+    <div class="trial-in">
+      <div class="trial-txt">
+        <h2 class="h2 big">30 jours pour l'essayer chez vous.</h2>
+        <p class="lead">Si elle ne vous convient pas, écrivez à hello@myvariations.com et on vous rembourse.</p>
+        <div class="tday"><span>Jour</span><b class="num" id="tday">1</b></div>
+        <div class="truler" aria-hidden="true"><i id="tfill"></i><span class="tick" style="--x:0"></span><span class="tick" style="--x:0.2069"></span><span class="tick" style="--x:1"></span></div>
+        <ol class="tsteps">
+          <li data-d="1"><b>Jour 1</b>Elle arrive chez vous, livrée en 48 h.</li>
+          <li data-d="7"><b>Jour 7</b>Le léger chatouillement des premiers jours est passé.</li>
+          <li data-d="30"><b>Jour 30</b>Vous décidez.</li>
+        </ol>
+      </div>
+      <div class="trial-media"><img src="assets/duo.jpg" alt="Deux brosses MyVariations posées sur un lavabo"></div>
+    </div>
+  </section>
+  <section class="s4" id="s4" data-bc-section="proof">
+    <div class="proof-split">
+      <div class="ufsbd" id="ufsbd"><img src="assets/ufsbd.jpg" alt="Les brosses MyVariations avec le logo de l'Union Française pour la Santé Bucco-Dentaire"></div>
+      <div class="proof-side">
+        <div class="head"><h2 class="h2 big">Ce qu'en pensent <em class="sw-u">les dentistes</em>, et ceux qui s'en servent</h2></div>
+        <div class="rings" id="figs">
+            <div class="ringc"><div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="49.01" data-v="0.85"/></svg><b class="num">8,5/10</b></div><span>la note d'efficacité qu'ils lui donnent</span></div>
+            <div class="ringc"><div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="39.21" data-v="0.88"/></svg><b class="num">88 %</b></div><span>la recommandent à leurs patients</span></div>
+            <span class="dsrc">Sondage UFSBD, novembre 2024, 657 répondants</span>
+          </div>
+        <p class="bigquote" id="bq">Un dentiste voit <mark id="hl">ce que votre miroir ne montre pas</mark>. Et ceux qui l'utilisent le confirment :</p>
+      </div>
+    </div>
+    <div class="wrap clients-wrap">
+      <div class="clients">
+        <p class="lead">3 600 clients interrogés en novembre 2023. Voici ce qu'ils disent :</p>
+        <div class="meters" id="meters">
+          <div class="meter" style="--v:0.92"><b class="num">92 %</b><span>Dents plus propres et plus lisses</span><div class="bar"><i></i></div></div>
+          <div class="meter" style="--v:0.91"><b class="num">91 %</b><span>Brossage plus doux qu'avant</span><div class="bar"><i></i></div></div>
+          <div class="meter" style="--v:0.90"><b class="num">90 %</b><span>Moins ou plus du tout de saignements<small>chez ceux qui saignaient, après 3 à 6 mois</small></span><div class="bar"><i></i></div></div>
+        </div>
+        <div class="duo">
+          <p class="plaque"><b class="num">Jusqu'à 45 % de plaque en moins</b><span>qu'avec une brosse manuelle.</span></p>
+          <div class="verb"><q>Ma dentiste m'a confirmée qu'elle était très étonnée du peu de tartre à retirer […]</q><span><i>A</i>Anne · avis client</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec s5" id="s5" data-bc-section="social-proof">
+    <div class="wrap">
+      <div class="head c">
+        <h2 class="h2 big">Ce qu'en disent ceux qui ont <em class="sw-u">changé de brosse</em></h2>
+        <p class="lead"><span class="stars" aria-hidden="true">★★★★★</span> 4,7/5 sur 36 419 avis vérifiés. Quatre d'entre eux.</p>
+      </div>
+      <div class="cols" id="rows">
+        <article class="rv"><span class="stars" aria-hidden="true">★★★★★</span><q>Brossage plus doux et efficace que la brosse à dents électriques que j'avais avant. […] Plus le câble de recharge qui traîne dans la salle de bain. Une seule recharge par mois et c'est fini !</q><div class="meta"><span class="av">D</span><span><b>Delphine L.</b> · Trustpilot</span></div></article>
+        <article class="rv"><span class="stars" aria-hidden="true">★★★★★</span><q>Bientôt 2 ans que j'utilise une brosse à dent My Variations et je ne pourrais plus passer à autre chose. Plus jamais de saignements au brossage, plus de tartre non plus et des dents ultra propres et lisses.</q><div class="meta"><span class="av">C</span><span><b>Christine Laurent</b> · Trustpilot</span></div></article>
+        <article class="rv"><span class="stars" aria-hidden="true">★★★★★</span><q>Après de nombreux essais infructueux, j'ai enfin pu trouver la brosse à dent qui me convient, elle laisse les dents aussi douces qu'après un détartrage chez le dentiste.</q><div class="meta"><span class="av">B</span><span><b>Brigitte</b> · avis client</span></div></article>
+        <article class="rv"><span class="stars" aria-hidden="true">★★★★★</span><q>J'avais un peu peur que toutes les promesses vues en ligne soient exagérées, mais finalement… pas du tout ! Après un mois d'utilisation, je vois vraiment la différence : mes dents sont beaucoup plus propres.</q><div class="meta"><span class="av">E</span><span><b>Elisa</b> · avis client</span></div></article>
+      </div>
+      <p class="million"><b>Plus d'un million</b> de clients.</p>
+    </div>
+  </section>
+  <section class="sec s6" id="s6" data-bc-section="faq">
+    <div class="wrap faq-grid">
+      <div class="head"><h2 class="h2">Vos questions</h2></div>
+      <div class="faq" id="faq">
+        <details open><summary data-bc-ignore>J'ai déjà une brosse électrique. Qu'est-ce que je gagne à changer ?</summary><p>Si c'est une rotative, elle nettoie dent par dent avec une petite tête ronde. La sonique vibre à 40 000 micro-mouvements par minute et brasse l'eau jusqu'entre les dents, sans que vous ayez à appuyer. Les clients le disent : 91 % trouvent le brossage plus agréable et moins agressif qu'avec leur ancienne brosse. Et vous n'aurez plus de socle à nettoyer, la charge se fait en USB-C une fois par mois.</p></details>
+        <details><summary data-bc-ignore>J'ai les gencives sensibles. Elle ne va pas être trop forte ?</summary><p>Ses 2 452 brins sont souples, et le mode Sensible réduit l'intensité. C'est ce que les dentistes conseillent : des brins souples, sans appuyer. Certains sentent un léger chatouillement les premiers jours, il passe vite. Si vos gencives saignent depuis longtemps, parlez-en à votre dentiste.</p></details>
+        <details><summary data-bc-ignore>Et les têtes, combien ça coûte après ?</summary><p>Avec l'abonnement, une tête neuve arrive tous les 1, 2 ou 3 mois, à 5,99 € livraison comprise. Vous recevez un e-mail 3 jours avant chaque envoi et vous pouvez décaler ou arrêter quand vous voulez. Sans abonnement, les têtes se vendent par 3 à 18 €.</p></details>
+        <details><summary data-bc-ignore>Et si elle ne me convient pas ?</summary><p>Vous avez 30 jours après la réception pour l'essayer chez vous. Si elle ne vous convient pas, écrivez à hello@myvariations.com et on vous rembourse.</p></details>
+        <details><summary data-bc-ignore>Mes enfants peuvent-ils l'utiliser ?</summary><p>La brosse adulte convient dès 10 ans. Avant, la tête est un peu grande pour une petite bouche. Il existe une brosse MyVariations pour enfants, plus petite et plus douce.</p></details>
+        <details><summary data-bc-ignore>Je la trouve en pharmacie ?</summary><p>Oui, dans plus de 6 000 pharmacies partenaires. Sur cette page, vous pouvez en plus prendre l'abonnement aux têtes, qui fait passer la brosse à 59,99 €.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="closing" id="s7" data-bc-section="final-cta">
+    <div class="closing-bg" id="closing-bg" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="closing-copy">
+        <h2 id="c-title">88&nbsp;% des professionnels interrogés la recommandent.</h2>
+        <p>Il manque un avis, le vôtre. Vous avez 30 jours pour vous le faire, chez vous.</p>
+        <a class="btn" href="#s3" data-bc-cta="mid">Je choisis ma brosse<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span class="micro">Satisfait ou remboursé · Livré en 48 h</span>
+      </div>
+      <div class="closing-media" id="closing-media"><img src="assets/lineup.jpg" alt="Les six brosses MyVariations alignées, de toutes les couleurs"></div>
+    </div>
+  </section>
+
+  <footer class="pf"><div class="wrap">
+    <img src="assets/mv-logo.png" alt="MyVariations">
+    <span>Sources : sondage UFSBD du 13 au 27 novembre 2024, 657 répondants · enquête de satisfaction, novembre 2023, 3 600 clients · réduction de plaque : comparaison avec une brosse à dents manuelle.</span>
+    <span>MyVariations · Paris · Mentions légales · CGV · Maquette de démonstration Boost Conversion, non publiée.</span>
+  </div></footer>
+  <div class="sticky-demo" id="sticky" data-bc-section="sticky-cta"><span>MyVariations, testée par les dentistes</span><a class="btn" href="#s3" data-bc-cta="sticky">Je découvre l'offre</a></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script>
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lenis = null, ctx = null;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const NB = " ";
+
+const FICHES = {
+ "1": {
+  "name": "Hero",
+  "tracker": "hero",
+  "repond": "« C'est sérieux ? »",
+  "anim": "hero bord à bord : texte à gauche, photo pleine hauteur à droite. le badge officiel UFSBD arrive en rebond sur la photo, la carte produit monte, puis les deux flottent doucement ; « 88 % la recommandent. » est en rose ; au chargement, le titre monte mot à mot et la photo s'ouvre de son cadre arrondi ; au scroll, elle dézoome doucement ; un reflet passe sur le bouton ; un filet rose en haut de page suit la lecture.",
+  "build": "Le hero ne parle que du test : pas de bandeau de réassurance ici (il passe juste avant l'offre), pas de source sous le titre (choix de Louis, 05/10). Pas de prix.",
+  "comps": [
+   {
+    "role": "Titre",
+    "name": "Text Reveal (Mask) · soralabs",
+    "url": "https://21st.dev/@soralabs/components/text-reveal-mask",
+    "img": "img/21s/text-reveal-mask.jpg",
+    "lic": "Sans licence : mouvement recodé"
+   },
+   {
+    "role": "Photo",
+    "name": "Scroll Reveal Image · unlumen",
+    "url": "https://21st.dev/@unlumen/components/scroll-reveal-image",
+    "img": "img/21s/scroll-reveal-image.jpg",
+    "lic": "MIT"
+   },
+   {
+    "role": "Bouton",
+    "name": "Shiny Button · Ali Imam",
+    "url": "https://21st.dev/@designali-in/components/shiny-button",
+    "img": "img/21s/shiny-button.jpg",
+    "lic": "Licence non indiquée : reflet recodé"
+   },
+   {
+    "role": "Progression",
+    "name": "Scroll Progress · Cnippet",
+    "url": "https://21st.dev/@cnippet-dev/components/scroll-progress",
+    "img": "img/21s/scroll-progress.jpg",
+    "lic": "Le filet rose en haut de page"
+   }
+  ]
+ },
+ "2": {
+  "name": "Ce que les dentistes demandent",
+  "tracker": "comparison",
+  "repond": "« Qu'est-ce qu'elle a de plus que la mienne ? »",
+  "anim": "en fin de section, un jouet : on touche l'un des 5 modes, la brosse vibre plus ou moins fort, son voyant prend la couleur du mode (clignotant pour Polish et Massage), une jauge d'intensité et une ligne d'explication changent. les trois conseils sont trois bandes 50/50 qui défilent normalement (rien n'est épinglé) : le texte monte en fondu à l'arrivée, la photo se pose, et le minuteur « 2:00 » décompte tout seul jusqu'à 0:00 en 4 secondes, puis repart en boucle ; fonds rose, sauge puis ciel. les deux titres portent un mot clé en rose (« brosse à dents », « sonique ») souligné d'un trait de feutre qui se dessine au scroll ; les trois cartes de conseils entrent en cascade ; dans le comparatif, les colonnes arrivent l'une après l'autre, chaque tête de brosse bouge et les ✓ de la colonne sonique apparaissent un à un.",
+  "build": "Sur mobile, le tableau garde ses 4 colonnes : seuls les pictos ✕ ~ ✓ restent dans les cases, et ce que fait la sonique passe en petit sous chaque critère. La rotative n'a que des « ~ », jamais de croix : la marque la dit « pas moins efficace ». Sur mobile, le libellé passe au-dessus des trois cases.",
+  "comps": [
+   {
+    "role": "Consignes",
+    "name": "Scroll Reveal, stepped list · Cnippet",
+    "url": "https://21st.dev/@cnippet-dev/components/scroll-reveal/stepped-list",
+    "img": "img/21s/stepped-list.jpg",
+    "lic": "MIT"
+   },
+   {
+    "role": "Comparatif",
+    "name": "Us vs Them Comparison · Oliver",
+    "url": "https://21st.dev/@olewandowski1/components/comparison-2",
+    "img": "img/21s/us-vs-them.jpg",
+    "lic": "Colonne de la marque en couleur pleine, recodée à la charte"
+   }
+  ]
+ },
+ "3": {
+  "name": "L'offre",
+  "tracker": "trust-bar + buy + how-it-works",
+  "repond": "« Je prends quoi, je risque quoi ? »",
+  "anim": "après l'offre, l'essai de 30 jours en 50/50 (rien n'est épinglé) : à l'arrivée, le grand compteur monte tout seul de « Jour 1 » à « Jour 30 » sur une règle, et les étapes Jour 1, Jour 7 et Jour 30 s'allument. le bandeau bleu nuit défile et accélère avec le scroll ; choisir une couleur change la photo (packshot de la marque) et teinte tout le fond de la section ; la galerie reste fixe pendant qu'on lit l'offre ; au clic, « Ajout… » puis « Ajoutée » ; la ligne de l'abonnement se trace au scroll.",
+  "build": "Nouveaux textes à valider : l'essai de 30 jours (titre repris de la FAQ, trois étapes courtes) et le bloc des 5 modes (descriptions reprises de la FAQ FR de la marque, sans les promesses santé du mode Massage). Placée juste après « ce que les dentistes demandent » (05/10, Louis) : on montre la brosse dès que la personne a compris ce qu'elle a de plus. Les deux prix de la fiche, abonnement sélectionné par défaut. Couleurs et variantes lues dans products.json au build. Bouton relié au panier Shopify. Les six couleurs ont chacune leur packshot de la marque et leur teinte de fond.",
+  "comps": [
+   {
+    "role": "Bouton",
+    "name": "Flow Button · Kain Xu",
+    "url": "https://21st.dev/@xubohuah/components/flow-button",
+    "img": "img/21s/flow-button.jpg",
+    "lic": "MIT · la flèche glisse, puis « Ajoutée »"
+   },
+   {
+    "role": "Abonnement",
+    "name": "Animated Progress Stepper · ShadcnSpace",
+    "url": "https://21st.dev/@shadcnspace/components/stepper-03",
+    "img": "img/21s/stepper.jpg",
+    "lic": "MIT · ligne, point qui voyage, étape qui pulse"
+   }
+  ]
+ },
+ "4": {
+  "name": "Les preuves",
+  "tracker": "proof",
+  "repond": "« C'est prouvé ? Et sur des gens comme moi ? »",
+  "anim": "preuves en 50/50 bord à bord : le visuel UFSBD occupe toute une moitié. le visuel UFSBD de la marque s'ouvre en volet, les anneaux se remplissent (chiffres fixes), le surligneur rose passe sur la phrase, les trois jauges se remplissent en cascade.",
+  "build": "Fusion des sections « le test » et « chez ceux qui s'en servent » (05/10, Louis) : les dentistes en bande compacte, puis les clients. La bande reprend le chiffre du hero sans le répéter en grand. Visuel UFSBD repris de la home de la marque (logo officiel déjà utilisé par elle).",
+  "comps": [
+   {
+    "role": "Anneaux",
+    "name": "Stats cards, circular progress · Ephraim Duncan",
+    "url": "https://21st.dev/@ephraimduncan/components/stats-cards-with-links/stats-cards-with-circular-progress",
+    "img": "img/21s/circular-progress.jpg",
+    "lic": "Licence non indiquée : recodé en SVG"
+   },
+   {
+    "role": "Phrase",
+    "name": "Text Highlighter · Daniel Petho",
+    "url": "https://21st.dev/@danielpetho/components/text-highlighter/text-highlighter-scroll-demo",
+    "img": "img/21s/text-highlighter.jpg",
+    "lic": "MIT · surligneur rose"
+   },
+   {
+    "role": "Barres",
+    "name": "Skill Level Meters · Cnippet",
+    "url": "https://21st.dev/@cnippet-dev/components/v-meter-6",
+    "img": "img/21s/meters.jpg",
+    "lic": "MIT"
+   }
+  ]
+ },
+ "5": {
+  "name": "Les avis",
+  "tracker": "social-proof",
+  "repond": "« Ils ne regrettent pas ? »",
+  "anim": "trois colonnes d'avis montent à des vitesses différentes, ralentissent au survol et accélèrent avec le scroll.",
+  "build": "Verbatims cités tels quels, à revérifier mot à mot sur Trustpilot avant mise en ligne.",
+  "comps": [
+   {
+    "role": "Avis",
+    "name": "Testimonials Columns · Efferd",
+    "url": "https://21st.dev/@efferd/components/testimonials-columns-1",
+    "img": "img/21s/testimonials-columns.jpg",
+    "lic": "MIT · une seule colonne sur mobile"
+   }
+  ]
+ },
+ "6": {
+  "name": "Vos questions",
+  "tracker": "faq",
+  "repond": "Les objections restantes",
+  "anim": "la question qui passe au centre de l'écran s'ouvre toute seule ; dès qu'on clique, on reprend la main.",
+  "build": "data-bc-ignore sur les questions.",
+  "comps": [
+   {
+    "role": "FAQ",
+    "name": "Scroll FAQ Accordion · Ruixen",
+    "url": "https://21st.dev/@ruixen.ui/components/scroll-faqaccordion",
+    "img": "img/21s/scroll-faq.jpg",
+    "lic": "Licence non indiquée : recodé"
+   }
+  ]
+ },
+ "7": {
+  "name": "Closing",
+  "tracker": "final-cta",
+  "repond": "« Je fais quoi maintenant ? »",
+  "anim": "closing en 50/50 bord à bord, la rangée des six brosses sur toute une moitié. la carte rose s'élargit jusqu'à toute la largeur, la rangée des six brosses glisse en parallaxe, le titre s'allume mot à mot.",
+  "build": "Le titre reprend le chiffre du hero. Sur mobile, une barre collante « Je découvre l'offre » suit le défilement après le hero (sticky-cta).",
+  "comps": [
+   {
+    "role": "Fond",
+    "name": "Scroll Media Expansion · Arunachalam",
+    "url": "https://21st.dev/@arunachalam/components/scroll-expansion-hero",
+    "img": "img/21s/scroll-expansion.jpg",
+    "lic": "MIT · la carte s'élargit au scroll"
+   },
+   {
+    "role": "Titre",
+    "name": "Text Gradient Scroll · Bundui",
+    "url": "https://21st.dev/@bundui/components/text-gradient-scroll",
+    "img": "img/21s/text-gradient-scroll.jpg",
+    "lic": "MIT · le titre s'allume mot à mot"
+   }
+  ]
+ }
+};
+
+$$(".fiche").forEach((el) => {
+  const k = el.dataset.s, f = FICHES[k]; if (!f) return;
+  el.innerHTML = '<div class="wrap"><div class="top"><span class="n">' + k + '</span><span class="t">' + esc(f.name) + '</span><span class="tag">' + esc(f.tracker) + '</span></div>'
+    + '<div class="rep"><b>Répond à :</b> ' + esc(f.repond) + '</div><div class="build"><b>Animation :</b> ' + esc(f.anim) + '</div><div class="build"><b>Au build :</b> ' + esc(f.build) + '</div>'
+    + (f.comps ? '<div class="comps">' + f.comps.map((c) => '<div class="comp"><img src="' + c.img + '" alt="" loading="lazy"><div><span class="r">' + esc(c.role) + '</span><a href="' + c.url + '" target="_blank" rel="noopener">' + esc(c.name) + '</a><span class="lic">' + esc(c.lic) + '</span></div></div>').join("") + '</div>' : '') + '</div>';
+});
+$("#struct-list").innerHTML = Object.keys(FICHES).map((k) => '<li><a href="#s' + k + '" data-k="' + k + '"><span>' + k + '</span><span>' + esc(FICHES[k].name) + '</span></a></li>').join("");
+
+/* Titre du hero et du closing découpés en mots (révélation mot à mot) */
+function splitNode(el, cls) {
+  const walk = (node) => [...node.childNodes].forEach((n) => {
+    if (n.nodeType === 3) {
+      const frag = document.createDocumentFragment();
+      n.textContent.split(/( )/).forEach((part) => {
+        if (part === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+        if (!part) return;
+        const w = document.createElement("span"); w.className = cls;
+        if (cls === "wd") { const i = document.createElement("span"); i.textContent = part; w.appendChild(i); } else w.textContent = part;
+        frag.appendChild(w);
+      });
+      n.replaceWith(frag);
+    } else if (n.nodeType === 1) walk(n);
+  });
+  walk(el);
+}
+splitNode($("#h1"), "wd");
+splitNode($("#c-title"), "w");
+
+/* Vue et cadre */
+$$("#seg-mode button").forEach((b) => b.addEventListener("click", () => {
+  document.body.classList.toggle("reading", b.dataset.mode === "reading");
+  $$("#seg-mode button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  setTimeout(() => window.ScrollTrigger && ScrollTrigger.refresh(), 60);
+}));
+$$("#seg-frame button").forEach((b) => b.addEventListener("click", () => {
+  $("#stage").classList.toggle("phone", b.dataset.frame === "phone");
+  $$("#seg-frame button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  setTimeout(build, 380);
+}));
+
+/* Offre : couleur = photo de la couleur + teinte du fond de section */
+const COLORS = [
+  ["Pastel Rose", "#f4b9c8", "assets/pink-boite.jpg", "#fdeef3"],
+  ["Onyx Black", "#1d1d1b", "assets/black-boite.jpg", "#efedee"],
+  ["Midnight Blue", "#26346b", "assets/c-midnight.jpg", "#e3e7f7"],
+  ["Ivory White", "#f2ede4", "assets/c-white.jpg", "#f7f3ec"],
+  ["Green", "#c6dca5", "assets/c-green.jpg", "#eaf3df"],
+  ["Blue", "#bad9e1", "assets/c-blue.jpg", "#e4f1f5"],
+];
+function swapImg(src) {
+  const img = $("#g-main"); if (img.getAttribute("src") === src) return;
+  if (!window.gsap || reduced) { img.src = src; return; }
+  gsap.to(img, { opacity: 0, scale: 1.03, duration: 0.18, onComplete: () => { img.src = src; gsap.fromTo(img, { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }); } });
+}
+$("#sw").innerHTML = COLORS.map(([n, c], i) => '<button type="button" class="sw" style="background:' + c + '" aria-label="' + n + '" aria-pressed="' + (i === 0) + '" data-i="' + i + '" data-bc-ignore></button>').join("");
+$$("#sw .sw").forEach((b) => b.addEventListener("click", () => {
+  const [n, c, src, tint] = COLORS[b.dataset.i];
+  $("#c-name").textContent = n; $("#chip-name").textContent = n; $("#chip-dot").style.background = c;
+  $$("#sw .sw").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  const t = $('#thumbs [data-color]'); t.dataset.src = src; t.querySelector("img").src = src;
+  $$("#thumbs button").forEach((x) => x.setAttribute("aria-pressed", String(x === t)));
+  document.documentElement.style.setProperty("--tint", tint);
+  swapImg(src);
+}));
+$$("#thumbs button").forEach((b) => b.addEventListener("click", () => {
+  swapImg(b.dataset.src);
+  $$("#thumbs button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+}));
+$$("#opts .opt").forEach((b) => b.addEventListener("click", () => $$("#opts .opt").forEach((x) => x.setAttribute("aria-pressed", String(x === b)))));
+$("#buy").addEventListener("click", () => {
+  const b = $("#buy"), t = $("#buy-t"); if (b.dataset.busy) return; b.dataset.busy = "1";
+  t.textContent = "Ajout…";
+  setTimeout(() => { t.textContent = "Ajoutée"; b.classList.add("done"); $("#mock-note").hidden = false; }, 700);
+  setTimeout(() => { t.textContent = "J'ajoute ma brosse au panier"; b.classList.remove("done"); delete b.dataset.busy; }, 2600);
+});
+
+/* FAQ : un clic ouvre ou ferme en glissant ; la question au centre de l'écran s'ouvre seule tant qu'on n'a pas cliqué */
+let faqManual = false;
+function faqOpen(d) {
+  if (d.open) return;
+  $$("#faq details[open]").forEach((o) => { if (o !== d) o.open = false; });
+  d.open = true;
+  if (window.gsap && !reduced) gsap.from(d.querySelector("p"), { height: 0, opacity: 0, duration: 0.4, ease: "power2.out", clearProps: "all" });
+}
+$$("#faq details").forEach((d) => {
+  const body = d.querySelector("p");
+  d.querySelector("summary").addEventListener("click", (e) => {
+    faqManual = true;
+    if (reduced || !window.gsap) return;
+    e.preventDefault();
+    if (d.open) gsap.to(body, { height: 0, opacity: 0, duration: 0.3, ease: "power2.inOut", onComplete: () => { d.open = false; gsap.set(body, { clearProps: "all" }); } });
+    else faqOpen(d);
+  });
+});
+const faqIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting && !faqManual && !reduced) faqOpen(e.target.parentElement); }), { rootMargin: "-42% 0px -52% 0px" });
+$$("#faq summary").forEach((sm) => faqIO.observe(sm));
+
+/* Comparatif : ce que fait la sonique, repris sous chaque critère (visible sur mobile seulement) */
+$$("#vs .vs-row:not(.vs-head)").forEach((r) => { const t = r.querySelector(".c.me span"), lb = r.querySelector(".lb"); if (t && lb) { const sm = document.createElement("small"); sm.className = "lb-sub"; sm.textContent = t.textContent; lb.appendChild(sm); } });
+
+/* Les 3 conseils : chaque bande entre en douceur quand elle arrive à l'écran ; le minuteur décompte tout seul (2:00 à 0:00 en 4 s) */
+let timerDone = false;
+function runTimer() {
+  /* Le minuteur décompte de 2:00 à 0:00 en 4 s, marque une pause d'1,5 s, puis repart en boucle */
+  if (timerDone) return; timerDone = true;
+  const dig = $("#tdig"), fg = $("#tfg");
+  if (reduced) { dig.textContent = "2:00"; fg.style.strokeDashoffset = 0; return; }
+  const dur = 4000, pause = 1500;
+  let t0 = performance.now();
+  const step = (t) => {
+    const k = Math.min(1, (t - t0) / dur), rest = Math.round(120 * (1 - k));
+    dig.textContent = Math.floor(rest / 60) + ":" + String(rest % 60).padStart(2, "0");
+    fg.style.strokeDashoffset = k;
+    fg.style.opacity = k >= 1 ? 0 : 1;
+    if (k < 1) requestAnimationFrame(step);
+    else setTimeout(() => { t0 = performance.now(); requestAnimationFrame(step); }, pause);
+  };
+  requestAnimationFrame(step);
+}
+const rowIO = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add("in");
+  if (e.target.dataset.i === "0") setTimeout(runTimer, 350);
+  rowIO.unobserve(e.target);
+}), { threshold: 0.35 });
+$$("#scene .srow").forEach((r) => rowIO.observe(r));
+
+/* 5 modes : la vibration, le voyant et l'intensité suivent le mode choisi (texte de la FAQ de la marque) */
+const MODES = [
+  { n: "White", d: "Le plus puissant, pour un nettoyage un peu plus vigoureux.", led: "#3b7be0", blink: 0, lvl: 5, amp: "3px", spd: "0.05s", wav: 1, wspd: "0.6s", bg: "#bad9e1", wa: 30, wf: 7, ws: 9, pulse: 0, vib: [400] },
+  { n: "Clean", d: "Une intensité moyenne, pour un nettoyage très efficace au quotidien.", led: "#3fb36b", blink: 0, lvl: 4, amp: "2.2px", spd: "0.06s", wav: 0.8, wspd: "0.8s", bg: "#c6dca5", wa: 23, wf: 6, ws: 7, pulse: 0, vib: [320] },
+  { n: "Sensible", d: "Un peu moins puissant, avec des vibrations moins amples : le plus doux, pour les dents sensibles.", led: "#e5484d", blink: 0, lvl: 2, amp: "1.2px", spd: "0.08s", wav: 0.5, wspd: "1.1s", bg: "#f9ceda", wa: 11, wf: 5, ws: 4, pulse: 0, vib: [140] },
+  { n: "Polish", d: "Lisse et polit la surface des dents. À utiliser en finition, après l'un des trois premiers modes.", led: "#3b7be0", blink: 1, lvl: 3, amp: "2.6px", spd: "0.12s", wav: 0.8, wspd: "0.5s", bg: "#d5e8ee", wa: 20, wf: 9, ws: 8, pulse: 2.2, vib: [90, 70, 90, 70, 90] },
+  { n: "Massage", d: "Stimule les gencives tout en douceur.", led: "#3fb36b", blink: 1, lvl: 1, amp: "1px", spd: "0.16s", wav: 0.4, wspd: "1.4s", bg: "#dcebc7", wa: 9, wf: 3, ws: 2.5, pulse: 1, vib: [200, 160, 200] },
+];
+function setMode(i) {
+  const m = MODES[i], box = $("#modes");
+  box.dataset.mode = i; box.dataset.blink = m.blink;
+  box.style.setProperty("--mled", m.led); box.style.setProperty("--mamp", m.amp); box.style.setProperty("--mspd", m.spd);
+  box.style.setProperty("--mwav", m.wav); box.style.setProperty("--mwspd", m.wspd); box.style.setProperty("--mzbg", m.bg);
+  const w = $("#mzword"); w.textContent = m.n;
+  if (window.gsap && !reduced) gsap.fromTo(w, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" });
+  waveTarget = m;
+  $$("#modes .mlevel i").forEach((x, k) => x.classList.toggle("on", k < m.lvl));
+  $$("#modes .mtabs button").forEach((b) => b.setAttribute("aria-selected", String(Number(b.dataset.m) === i)));
+  const d = $("#mdesc");
+  d.textContent = m.d;
+  if (window.gsap && !reduced) gsap.fromTo(d, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" });
+}
+/* L'onde de vibration : amplitude, fréquence et vitesse propres au mode, en pulsations pour Polish et Massage */
+let waveTarget = MODES[0], waveCur = { wa: 30, wf: 7, ws: 9, pulse: 0 };
+const wavePath = $("#mzwave");
+function drawWave(t) {
+  for (const k of ["wa", "wf", "ws", "pulse"]) waveCur[k] += (waveTarget[k] - waveCur[k]) * 0.08;
+  const env = waveCur.pulse > 0.05 ? 0.35 + 0.65 * Math.abs(Math.sin(t / 1000 * Math.PI * waveCur.pulse)) : 1;
+  let d = "";
+  for (let x = 0; x <= 600; x += 6) {
+    const edge = Math.sin(Math.PI * x / 600);
+    const y = 40 + waveCur.wa * env * edge * Math.sin((x / 600) * waveCur.wf * 2 * Math.PI - t / 1000 * waveCur.ws);
+    d += (x ? " L" : "M") + x + " " + y.toFixed(1);
+  }
+  wavePath.setAttribute("d", d);
+  requestAnimationFrame(drawWave);
+}
+if (!reduced) requestAnimationFrame(drawWave);
+
+/* Les modes défilent seuls (façon stories) tant que la bande est à l'écran ; un toucher reprend la main et fait vibrer le téléphone */
+const MZ_DUR = 4200;
+let mzAuto = !reduced, mzTimer = null, mzCur = 0, mzSeen = false;
+function mzGo(i) {
+  mzCur = i; setMode(i);
+  $$("#modes .mtabs button").forEach((b) => b.classList.toggle("run", mzAuto && Number(b.dataset.m) === i));
+  clearTimeout(mzTimer);
+  if (mzAuto && mzSeen) mzTimer = setTimeout(() => mzGo((mzCur + 1) % MODES.length), MZ_DUR);
+}
+$$("#modes .mtabs button").forEach((b) => b.addEventListener("click", () => {
+  mzAuto = false; mzGo(Number(b.dataset.m));
+  try { if (navigator.vibrate) navigator.vibrate(MODES[mzCur].vib); } catch (e) {}
+}));
+new IntersectionObserver((es) => es.forEach((e) => {
+  mzSeen = e.isIntersecting;
+  if (mzSeen) mzGo(mzCur); else clearTimeout(mzTimer);
+}), { threshold: 0.5 }).observe($("#modes"));
+mzGo(0);
+
+/* Essai de 30 jours : le compteur monte tout seul de 1 à 30 quand la section arrive à l'écran */
+const trial = $("#trial");
+function trialSet(day) {
+  $("#tday").textContent = day;
+  trial.style.setProperty("--t", (day - 1) / 29);
+  $$("#trial .tsteps li").forEach((li) => li.classList.toggle("on", day >= Number(li.dataset.d)));
+}
+trialSet(1);
+const trialIO = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  trialIO.disconnect();
+  if (reduced) { trialSet(30); return; }
+  const t0 = performance.now(), dur = 2600;
+  const step = (t) => { const k = Math.min(1, (t - t0) / dur), ease = 1 - Math.pow(1 - k, 3); trialSet(Math.max(1, Math.round(1 + ease * 29))); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}), { threshold: 0.45 });
+trialIO.observe(trial);
+
+/* Sommaire actif + barre collante mobile */
+const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+  if (!en.isIntersecting) return;
+  const k = en.target.id.slice(1);
+  $$("#struct-list a").forEach((a) => a.classList.toggle("on", a.dataset.k === k));
+  $("#sticky").classList.toggle("on", k !== "1" && k !== "3" && k !== "7");
+}), { rootMargin: "-45% 0px -50% 0px" });
+$$("section[id^=s]").forEach((s) => io.observe(s));
+
+/* Bandeau de réassurance */
+const TRUST = '<span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3c-2.5 0-4 2-4 4.5 0 2 1 3.5 1.5 5.5.6 2.4.8 8 3 8 1.7 0 1.6-5 4.5-5s2.8 5 4.5 5c2.2 0 2.4-5.6 3-8 .5-2 1.5-3.5 1.5-5.5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/></svg></span>Recommandée par l&#39;UFSBD</span><span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></span>Plus de 6' + NB + '000 pharmacies</span><span><span class="ic star"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00b67a" d="M12 2.5l2.9 6.3 6.8.7-5.1 4.6 1.5 6.7L12 17.4l-6.1 3.4 1.5-6.7L2.3 9.5l6.8-.7z"/></svg></span>4,7/5 sur Trustpilot</span><span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg></span>Livrée en 48 h</span><span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2"/><path d="M20 4v4h-4M4 20v-4h4"/></svg></span>Satisfait ou remboursé</span>';
+$("#trust-track").innerHTML = TRUST + TRUST + TRUST + TRUST;
+
+/* Avis en trois colonnes */
+const RV = $$("#rows .rv").map((a) => a.outerHTML);
+const colHTML = (arr) => '<div class="col">' + [...arr, ...arr].join("") + "</div>";
+$("#rows").innerHTML = colHTML(RV) + colHTML([RV[2], RV[3], RV[0], RV[1]]) + colHTML([RV[1], RV[3], RV[0], RV[2]]);
+
+/* Défilement doux */
+if (!reduced && window.Lenis && window.gsap) {
+  lenis = new Lenis({ lerp: 0.09 });
+  lenis.on("scroll", () => window.ScrollTrigger && ScrollTrigger.update());
+  gsap.ticker.add((t) => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  $$('a[href^="#s"]').forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); lenis.scrollTo($(a.getAttribute("href")), { offset: -40 }); }));
+}
+
+function fitSwash(svg) {
+  /* Le trait se dessine à la taille réelle du mot : pas d'étirement, donc pas d'épaississement.
+     Tant que le mot n'a pas sa vraie largeur (polices pas chargées, page cachée), on ne dessine rien. */
+  const r = svg.getBoundingClientRect(), p = svg.querySelector("path");
+  if (r.width < 24 || r.height < 4) { p.style.visibility = "hidden"; return 0; }
+  const w = r.width, h = r.height;
+  svg.setAttribute("viewBox", "0 0 " + w.toFixed(1) + " " + h.toFixed(1));
+  svg.setAttribute("preserveAspectRatio", "none");
+  p.removeAttribute("pathLength");
+  p.setAttribute("d", "M3 " + (h * 0.7).toFixed(1) + " C " + (w * 0.22).toFixed(1) + " " + (h * 0.2).toFixed(1) + ", " + (w * 0.6).toFixed(1) + " " + (h * 0.1).toFixed(1) + ", " + (w - 3).toFixed(1) + " " + (h * 0.5).toFixed(1));
+  const L = p.getTotalLength();
+  p.style.strokeDasharray = L;
+  p.style.strokeDashoffset = (svg.dataset.armed && !svg.dataset.drawn) ? L : 0;
+  p.style.visibility = "visible";
+  return L;
+}
+$$(".swash").forEach(fitSwash);
+if (window.ResizeObserver) { const ro = new ResizeObserver((es) => es.forEach((e) => fitSwash(e.target))); $$(".swash").forEach((sv) => ro.observe(sv)); }
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => $$(".swash").forEach(fitSwash));
+function heroIn() {
+  if (reduced || !window.gsap) return;
+  gsap.fromTo("#h1 .wd > span", { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.05, ease: "power4.out", delay: 0.1 });
+  gsap.fromTo(["#h1sub", "#hero-cta"], { y: 18, opacity: 0, filter: "blur(6px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.12, delay: 0.55, ease: "power3.out", clearProps: "filter" });
+  gsap.fromTo("#hero-media", { clipPath: "inset(8% 10% 8% 10% round 32px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 1.3, ease: "power3.out", delay: 0.15 });
+  gsap.from("#hero-badge", { scale: 0.6, rotation: -14, opacity: 0, duration: 0.9, ease: "back.out(1.8)", delay: 0.95, clearProps: "transform,opacity" });
+  gsap.from("#hero-prod", { y: 50, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.1, clearProps: "transform,opacity" });
+}
+
+function build() {
+  if (!window.gsap || !window.ScrollTrigger || reduced) return;
+  gsap.registerPlugin(ScrollTrigger);
+  if (ctx) ctx.revert();
+  ctx = gsap.context(() => {
+    gsap.to("#prog", { scaleX: 1, ease: "none", scrollTrigger: { trigger: "#stage", start: "top top", end: "bottom bottom", scrub: 0.3 } });
+    /* 1. La photo dézoome au scroll */
+    gsap.fromTo("#hero-media img", { scale: 1.18 }, { scale: 1, ease: "none", scrollTrigger: { trigger: "#hero-media", start: "top 80%", end: "bottom top", scrub: 0.6 } });
+    /* Le trait de feutre se dessine sous le mot rose quand le titre arrive */
+    $$(".swash").forEach((svg) => {
+      const p = svg.querySelector("path");
+      if (svg.dataset.drawn) return;
+      svg.dataset.armed = "1"; const L = fitSwash(svg);
+      ScrollTrigger.create({ trigger: svg.closest("h2, h3"), start: "top 80%", once: true, onEnter: () => {
+        const len = fitSwash(svg) || L; svg.dataset.drawn = "1";
+        p.style.transition = "none"; p.style.strokeDashoffset = len; void p.getBoundingClientRect();
+        p.style.transition = "stroke-dashoffset 0.9s cubic-bezier(.65,0,.35,1)"; p.style.strokeDashoffset = 0;
+      } });
+    });
+    gsap.from(".vs-title", { y: 30, opacity: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: ".vs-title", start: "top 85%", once: true } });
+    /* 2. Les conseils en cascade, puis le comparatif colonne par colonne */
+    [1, 2, 3].forEach((c, k) => gsap.from('#vs [data-c="' + c + '"]', { y: 24, opacity: 0, duration: 0.6, stagger: 0.06, delay: k * 0.18, ease: "power3.out", scrollTrigger: { trigger: "#vs", start: "top 78%", once: true } }));
+    gsap.from("#vs .c.me .mk", { scale: 0, rotation: -90, duration: 0.45, stagger: 0.15, delay: 0.9, ease: "back.out(2)", scrollTrigger: { trigger: "#vs", start: "top 78%", once: true } });
+    /* 3. Bandeau qui défile et accélère, offre qui monte, ligne de l'abonnement */
+    const tt = gsap.fromTo("#trust-track", { xPercent: 0 }, { xPercent: -50, duration: 34, ease: "none", repeat: -1 });
+    gsap.fromTo("#s3 .gallery .main", { clipPath: "inset(0 0 100% 0 round 28px)" }, { clipPath: "inset(0 0 0% 0 round 28px)", duration: 1.1, ease: "power3.inOut", scrollTrigger: { trigger: "#s3", start: "top 75%", once: true } });
+    gsap.from("#s3 .buybox", { y: 60, opacity: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: "#s3", start: "top 70%", once: true } });
+    gsap.from("#stepper li", { y: 30, opacity: 0, duration: 0.6, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: "#stepper", start: "top 85%", once: true } });
+    const lis = $$("#stepper li");
+    gsap.fromTo("#stepper", { "--p": 0 }, { "--p": 1, ease: "none", scrollTrigger: { trigger: "#stepper", start: "top 80%", end: "top 35%", scrub: 0.4,
+      onUpdate: (st) => { const n = Math.min(lis.length - 1, Math.floor(st.progress * lis.length)); lis.forEach((l, k) => l.classList.toggle("on", k === n)); } } });
+    /* 4. Visuel UFSBD en volet, anneaux, surligneur, jauges */
+    gsap.fromTo("#ufsbd", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.2, ease: "power3.inOut", scrollTrigger: { trigger: "#s4", start: "top 70%", once: true } });
+    ScrollTrigger.create({ trigger: "#figs", start: "top 80%", once: true, onEnter: () => $$("#figs .fg").forEach((c, i) => gsap.fromTo(c, { strokeDashoffset: 326.73 }, { strokeDashoffset: 326.73 * (1 - Number(c.dataset.v)), duration: 1.6, delay: i * 0.15, ease: "power3.out" })) });
+    gsap.from("#figs .ringc", { x: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: "#figs", start: "top 85%", once: true } });
+    gsap.fromTo("#hl", { "--hl": "0%" }, { "--hl": "100%", duration: 1.1, ease: "power2.inOut", scrollTrigger: { trigger: "#bq", start: "top 78%", once: true } });
+    $$("#meters .meter").forEach((m, i) => gsap.fromTo(m.querySelector(".bar i"), { scaleX: 0 }, { scaleX: Number(getComputedStyle(m).getPropertyValue("--v")), duration: 1.4, delay: i * 0.15, ease: "power3.out", scrollTrigger: { trigger: "#meters", start: "top 82%", once: true } }));
+    gsap.from("#meters .meter", { y: 40, opacity: 0, duration: 0.8, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: "#meters", start: "top 85%", once: true } });
+    gsap.from(".duo > *", { y: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: ".duo", start: "top 85%", once: true } });
+    /* 5. Trois colonnes d'avis à des vitesses différentes */
+    const cols = $$("#rows .col").map((c, k) => gsap.fromTo(c, { yPercent: 0 }, { yPercent: -50, duration: [38, 30, 44][k], ease: "none", repeat: -1 }));
+    $("#rows").onmouseenter = () => cols.forEach((t) => gsap.to(t, { timeScale: 0.2, duration: 0.4 }));
+    $("#rows").onmouseleave = () => cols.forEach((t) => gsap.to(t, { timeScale: 1, duration: 0.4 }));
+    /* 7. La carte rose s'élargit, la rangée des brosses glisse, le titre s'allume mot à mot */
+    gsap.fromTo("#closing-bg", { clipPath: "inset(7% 6% 7% 6% round 32px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none", scrollTrigger: { trigger: "#s7", start: "top 85%", end: "top 20%", scrub: true } });
+    gsap.fromTo("#closing-media img", { yPercent: -8 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: "#s7", start: "top bottom", end: "bottom top", scrub: true } });
+    gsap.to("#c-title .w", { opacity: 1, stagger: 0.1, ease: "none", scrollTrigger: { trigger: "#c-title", start: "top 80%", end: "bottom 50%", scrub: true } });
+    /* Vitesse du scroll : le bandeau et les avis accélèrent */
+    ScrollTrigger.create({ onUpdate: (st) => { const v = Math.min(5, 1 + Math.abs(st.getVelocity()) / 400); [tt, ...cols].forEach((t) => gsap.to(t, { timeScale: v, duration: 0.2, overwrite: true })); gsap.delayedCall(0.25, () => [tt, ...cols].forEach((t) => gsap.to(t, { timeScale: 1, duration: 0.8 }))); } });
+  });
+  ScrollTrigger.refresh();
+}
+heroIn();
+if (document.readyState === "complete") build(); else addEventListener("load", build);
+</script>
+
+</body>
+</html>
